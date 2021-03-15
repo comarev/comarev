@@ -3,13 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
-gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
-gem 'pg'
-gem 'puma', '~> 4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'rubocop', require: false
 gem 'devise'
 gem 'devise-jwt'
+gem 'pg'
+gem 'puma', '~> 4.1'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
+gem 'rubocop', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
