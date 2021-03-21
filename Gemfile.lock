@@ -57,6 +57,22 @@ GEM
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
     ast (2.4.2)
+    aws-eventstream (1.1.0)
+    aws-partitions (1.349.0)
+    aws-sdk-core (3.104.3)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.36.0)
+      aws-sdk-core (~> 3, >= 3.99.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.75.0)
+      aws-sdk-core (~> 3, >= 3.104.1)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.2.1)
+      aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.16)
     bootsnap (1.7.2)
       msgpack (~> 1.0)
@@ -93,6 +109,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
+    jmespath (1.4.0)
     jwt (2.2.2)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -121,6 +138,8 @@ GEM
     pg (1.2.3)
     puma (4.3.7)
       nio4r (~> 2.0)
+    pundit (2.1.0)
+      activesupport (>= 3.0.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -205,6 +224,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk-s3 (~> 1)
   bootsnap (>= 1.4.2)
   byebug
   devise
@@ -213,6 +233,7 @@ DEPENDENCIES
   listen (~> 3.2)
   pg
   puma (~> 4.1)
+  pundit
   rails (~> 6.0.3, >= 6.0.3.5)
   rubocop
   spring
