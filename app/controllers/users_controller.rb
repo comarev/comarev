@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = authorize User.create(user_params)
 
     if @user.errors.present?
       validation_error(@user)
