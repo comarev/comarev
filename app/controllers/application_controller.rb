@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
   def validation_error(resource, status = nil)
     render json: { errors: format_errors(resource.errors) },
-      status: status || :bad_request
+           status: status || :bad_request
   end
 
   def format_errors(errors)
