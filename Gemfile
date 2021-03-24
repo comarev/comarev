@@ -12,6 +12,7 @@ gem 'puma', '~> 4.1'
 gem "pundit"
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 gem 'rubocop', require: false
+gem 'active_model_serializers', '~> 0.10.6'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

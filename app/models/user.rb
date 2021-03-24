@@ -10,4 +10,10 @@ class User < ApplicationRecord
   validates :cellphone, presence: true
   validates :address, presence: true
   validates :cpf, presence: true
+
+  def picture_url
+    return nil unless profile_picture.attached?
+
+    profile_picture.service_url
+  end
 end
