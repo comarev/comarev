@@ -2,12 +2,12 @@
 
 FactoryBot.define do
   factory :user do
-    full_name { Faker::Name.name }
-    email { Faker::Internet.email }
-    password { Faker::Internet.password }
-    address { Faker::Address.street_name }
-    cpf { Faker::IDNumber.brazilian_citizen_number }
-    cellphone { Faker::PhoneNumber.cell_phone_in_e164 }
+    full_name { FFaker::Name.unique.name }
+    email { FFaker::Internet.email }
+    password { FFaker::Internet.password }
+    address { FFaker::Address.street_name }
+    cpf { FFaker::IdentificationBR.cpf }
+    cellphone { FFaker::PhoneNumberBR.mobile_phone_number }
   end
 
   trait :admin do

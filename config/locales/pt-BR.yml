@@ -229,6 +229,3 @@ pt-BR:
     pm: ""
   pundit:
     default: "Você não possui autorização!"
-    post_policy:
-      update?: "You cannot edit this post!"
-      create?: "You cannot create posts!"

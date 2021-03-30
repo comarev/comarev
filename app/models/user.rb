@@ -3,13 +3,8 @@ class User < ApplicationRecord
 
   has_one_attached :profile_picture
 
-  validates_uniqueness_of :email
-
-  validates :email, presence: true
-  validates :full_name, presence: true
-  validates :cellphone, presence: true
-  validates :address, presence: true
-  validates :cpf, presence: true
+  validates :email, uniqueness: true
+  validates :email, :full_name, :cellphone, :address, :cpf, presence: true
 
   def picture_url
     return nil unless profile_picture.attached?

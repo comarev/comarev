@@ -11,24 +11,24 @@ class ApplicationPolicy
   end
 
   def create?
-    admin_or_user
+    admin_or_current_user?
   end
 
   def show?
-    admin_or_user
+    admin_or_current_user?
   end
 
   def update?
-    admin_or_user
+    admin_or_current_user?
   end
 
   def destroy?
-    admin_or_user
+    admin_or_current_user?
   end
 
   private
 
-  def admin_or_user
+  def admin_or_current_user?
     user.admin? or record.id == user.id
   end
 end
