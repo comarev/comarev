@@ -1,11 +1,21 @@
 require 'rails_helper'
 
 describe UserPolicy do
-  subject { UserPolicy }
+  subject { UserPolicy.new(user, new_user) }
 
-  permissions :create?, :destroy? do
-    it "denies access if user is not an admin" do
-      expect(subject).not_to permit(User.new(admin: false), User.new)
-    end
+  let(:new_user) { create(:user) }
+
+  context "for a regular user" do
+    let(:user) { create(:user) }
+
+    it { should_not authorize(:create) }
+    it { should_not authorize(:destroy) }
+  end
+
+  context "for a admin user" do
+    let(:user) { create(:user, :admin) }
+
+    it { should authorize(:create) }
+    it { should authorize(:destroy) }
   end
 end
