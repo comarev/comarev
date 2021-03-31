@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    user_params = %i[full_name email password cpf address cellphone admin active profile_picture]
+    user_params = %i[full_name email password cpf address cellphone admin active avatar]
     params.require(:user).permit(user_params)
   end
 end

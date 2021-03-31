@@ -3,9 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
+gem "fog-aws"
 gem 'active_model_serializers', '~> 0.10.6'
 gem 'aws-sdk-s3', '~> 1'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'carrierwave', '~> 2.0'
 gem 'devise'
 gem 'devise-jwt'
 gem 'pg'
