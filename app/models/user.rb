@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  validates :email, uniqueness: true
+  validates :email, :cpf, uniqueness: true
   validates :email, :full_name, :cellphone, :address, :cpf, presence: true
 
   def picture_url
