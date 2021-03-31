@@ -11,29 +11,21 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = authorize User.create(user_params)
+    @user = authorize User.create!(user_params)
 
-    if @user.errors.present?
-      validation_error(@user)
-    else
-      render json: @user, status: :created
-    end
+    render json: @user, status: :created
   end
 
   def update
-    if @user.update_attributes(permitted_attributes(@user))
-      render json: @user, status: :ok
-    else
-      validation_error(@user)
-    end
+    @user.update_attributes!(permitted_attributes(@user))
+
+    render json: @user, status: :ok
   end
 
   def destroy
-    if @user.destroy
-      render json: @user, status: :ok
-    else
-      validation_error(@user)
-    end
+    @user.destroy!
+
+    render json: @user, status: :ok
   end
 
   private
