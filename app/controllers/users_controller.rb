@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
-    users = authorize User.where(admin: false)
+    @users = authorize User.where(admin: false)
     render json: users, status: :ok
   end
 
