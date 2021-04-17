@@ -8,14 +8,16 @@ describe UserPolicy do
   context "for a regular user" do
     let(:user) { create(:user) }
 
-    it { should_not authorize(:create) }
-    it { should_not authorize(:destroy) }
+    it { is_expected.not_to authorize(:create) }
+    it { is_expected.not_to authorize(:destroy) }
+    it { is_expected.not_to authorize(:index) }
   end
 
-  context "for a admin user" do
+  context "for an admin user" do
     let(:user) { create(:user, :admin) }
 
-    it { should authorize(:create) }
-    it { should authorize(:destroy) }
+    it { is_expected.to authorize(:create) }
+    it { is_expected.to authorize(:destroy) }
+    it { is_expected.to authorize(:index) }
   end
 end
