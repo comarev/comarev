@@ -10,4 +10,8 @@ RSpec.describe Company, type: :model do
 
     it { is_expected.to validate_uniqueness_of(:cnpj).case_insensitive }
   end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:users) }
+  end
 end
