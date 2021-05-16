@@ -15,7 +15,10 @@ gem 'puma', '~> 4.1'
 gem 'pundit'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
-gem 'rubocop', require: false
+
+group :test do
+  gem 'simplecov'
+end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -24,6 +27,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'rubocop'
   gem 'shoulda-matchers', '~> 4.0'
 end
 
