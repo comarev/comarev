@@ -142,8 +142,8 @@ RSpec.describe User, :type => :request do
     before { headers }
     subject(:update_user) do
       patch user_path(target_user),
-            params: user_params,
-            headers: headers
+        params: user_params,
+        headers: headers
     end
 
     context "when the user exists" do
