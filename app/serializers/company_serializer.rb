@@ -7,6 +7,7 @@ class CompanySerializer < ActiveModel::Serializer
     :code,
     :discount,
     :active,
+    :users,
     :created_at,
     :updated_at
 end

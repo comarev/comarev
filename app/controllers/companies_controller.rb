@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
   end
 
   def company_params
-    company_params = %i[name cnpj address phone active code discount]
+    company_params = %i[name cnpj address phone active code discount].push(user_ids: [])
     params.require(:company).permit(company_params)
   end
 end
