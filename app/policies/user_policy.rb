@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
 
   def permitted_attributes
     if user.admin?
-      DEFAULT_ATTRS.concat(ADMIN_ATTRS)
+      DEFAULT_ATTRS + ADMIN_ATTRS
     else
       DEFAULT_ATTRS
     end
