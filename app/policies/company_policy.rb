@@ -18,10 +18,10 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def index?
-    user.admin
+    user.admin?
   end
 
   def show?
-    user.admin
+    user.admin?
   end
 end
