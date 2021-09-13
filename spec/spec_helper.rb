@@ -1,4 +1,4 @@
-require "pundit/rspec"
+require 'pundit/rspec'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

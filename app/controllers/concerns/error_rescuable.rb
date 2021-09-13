@@ -12,7 +12,7 @@ module ErrorRescuable
 
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
-    error = I18n.t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+    error = I18n.t "#{policy_name}.#{exception.query}", scope: 'pundit', default: :default
 
     render json: { message: error }, status: :unprocessable_entity
   end

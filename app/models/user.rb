@@ -6,8 +6,11 @@ class User < ApplicationRecord
   validates :email, :cpf, uniqueness: true
   validates :email, :full_name, :cellphone, :address, :cpf, presence: true
 
+  has_many :company_users
+  has_many :companies, through: :company_users
+
   def picture_url
-    return nil unless !avatar.file.nil?
+    return nil if avatar.file.nil?
 
     avatar.url
   end
