@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = authorize User.create!(user_params)
+    authorize(User)
+    @user = User.create!(user_params)
 
     render json: @user, status: :created
   end
