@@ -86,7 +86,7 @@ RSpec.describe Company, type: :request do
       it 'returns the expected response body' do
         create_company
 
-        expect(json).to include(name: "Tesla")
+        expect(json).to include(name: 'Tesla')
       end
     end
 

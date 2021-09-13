@@ -1,6 +1,6 @@
 class UserPolicy < ApplicationPolicy
-  DEFAULT_ATTRS = %i[full_name email password address cellphone]
-  ADMIN_ATTRS = %i[admin active]
+  DEFAULT_ATTRS = %i[full_name email password address cellphone].freeze
+  ADMIN_ATTRS = %i[admin active].freeze
 
   def permitted_attributes
     if user.admin?
