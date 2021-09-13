@@ -3,10 +3,10 @@ require 'rails_helper'
 describe CompanyPolicy do
   subject { CompanyPolicy.new(user, new_company) }
 
-  let(:new_company) { create(:company) }
+  let(:new_company) { build_stubbed(:company) }
 
   context 'for a regular user' do
-    let(:user) { create(:user) }
+    let(:user) { build_stubbed(:user) }
 
     it { is_expected.not_to authorize(:create) }
     it { is_expected.not_to authorize(:index) }
@@ -16,7 +16,7 @@ describe CompanyPolicy do
   end
 
   context 'for an admin user' do
-    let(:user) { create(:user, :admin) }
+    let(:user) { build_stubbed(:user, :admin) }
 
     it { is_expected.to authorize(:create) }
     it { is_expected.to authorize(:index) }
