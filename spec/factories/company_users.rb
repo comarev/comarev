@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :company_user do
-    company { nil }
-    user { nil }
+    company
+    user
     role { 1 }
   end
 end
