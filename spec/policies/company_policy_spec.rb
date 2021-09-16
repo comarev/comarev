@@ -54,4 +54,58 @@ describe CompanyPolicy do
     it { is_expected.not_to authorize(:update) }
     it { is_expected.to authorize(:show) }
   end
+
+  describe '#permitted_attributes' do
+    subject { described_class.new(user, company).permitted_attributes }
+
+    context 'for admin user' do
+      let(:company) { build_stubbed(:company) }
+      let(:user) { create(:user, :admin) }
+
+      it { is_expected.to include(:name) }
+      it { is_expected.to include(:cnpj) }
+      it { is_expected.to include(:address) }
+      it { is_expected.to include(:phone) }
+      it { is_expected.to include(:active) }
+      it { is_expected.to include(:code) }
+      it { is_expected.to include(:discount) }
+      it { is_expected.to include({ user_ids: [] }) }
+    end
+
+    context 'for manager user' do
+      let(:company) { build_stubbed(:company) }
+      let(:user) { create(:user) }
+
+      let!(:company_user) do
+        build_stubbed(:company_user, :manager, company: company, user: user)
+      end
+
+      it { is_expected.to include(:name) }
+      it { is_expected.to include(:cnpj) }
+      it { is_expected.to include(:address) }
+      it { is_expected.to include(:phone) }
+      it { is_expected.to include(:active) }
+      it { is_expected.to include(:code) }
+      it { is_expected.to include({ user_ids: [] }) }
+      it { is_expected.not_to include(:discount) }
+    end
+
+    context 'for manager user' do
+      let(:company) { build_stubbed(:company) }
+      let(:user) { create(:user) }
+
+      let!(:company_user) do
+        build_stubbed(:company_user, :regular, company: company, user: user)
+      end
+
+      it { is_expected.to include(:name) }
+      it { is_expected.to include(:cnpj) }
+      it { is_expected.to include(:address) }
+      it { is_expected.to include(:phone) }
+      it { is_expected.to include(:active) }
+      it { is_expected.to include(:code) }
+      it { is_expected.to include({ user_ids: [] }) }
+      it { is_expected.not_to include(:discount) }
+    end
+  end
 end
