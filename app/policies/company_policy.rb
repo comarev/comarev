@@ -10,7 +10,7 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin?
+    user.admin? || (belongs_to_company? && manager?)
   end
 
   def destroy?
@@ -22,6 +22,16 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin?
+    user.admin? || belongs_to_company?
+  end
+
+  private
+
+  def manager?
+    user.company_user_for(record.id)&.manager?
+  end
+
+  def belongs_to_company?
+    record.users.include?(user)
   end
 end
