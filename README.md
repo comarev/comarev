@@ -1,24 +1,9 @@
-# README
+# Comarev-API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TODO: Add a cool description about the project
 
-Things you may want to cover:
+### Setup
 
-* Ruby version
+* Prepare database.yml
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    $ cp config/database.example.yml config/database.yml
