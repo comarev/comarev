@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  host: <%= ENV['PG_HOST'] %>
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: comarev_development
+
+test:
+  <<: *default
+  database: comarev_test
+
+production:
+  <<: *default
+  database: comarev

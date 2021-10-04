@@ -34,3 +34,4 @@
 .env
 .tool-versions
 /coverage
+/config/database.yml

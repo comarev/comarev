@@ -1,0 +1,55 @@
+name: RSpec
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  specs:
+    runs-on: ubuntu-20.04
+    services:
+      db:
+        image: postgres:12.2
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      GEMFILE_RUBY_VERSION: 2.7.0
+      PG_HOST: localhost
+      PG_USERNAME: postgres
+      PG_PASSWORD: password
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.0
+          bundler-cache: true
+
+      - name: Build
+        run: |
+          yarn
+          cp config/database.example.yml config/database.yml
+          bundle exec rake db:create
+          bundle exec rake db:schema:load
+
+      - name: specs
+        run: |
+          bundle exec rspec

@@ -1,24 +1,12 @@
-# README
+# Comarev-API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![rspec workflow](https://github.com/belgamo/comarev/actions/workflows/rspec.yml/badge.svg)
+![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
 
-Things you may want to cover:
+TODO: Add a cool description about the project
 
-* Ruby version
+### Setup
 
-* System dependencies
+* Prepare database.yml
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    $ cp config/database.example.yml config/database.yml
