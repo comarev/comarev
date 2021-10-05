@@ -1,5 +1,8 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  minimum_coverage 90
+  maximum_coverage_drop 2
+end
 
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
