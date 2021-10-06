@@ -44,3 +44,6 @@ The project's idea is to create the MVP of a system that allows Comarev's manage
 
     $ rails s
 
+## Run tests
+
+    $ bundle exec rspec
