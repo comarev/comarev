@@ -44,6 +44,24 @@ The project's idea is to create the MVP of a system that allows Comarev's manage
 
     $ rails s
 
+### Setup with docker
+
+You will need to install [docker-compose](https://docs.docker.com/compose/install/)
+
+* Build the app image
+
+    $ docker-compose build
+
+* Database setup:
+
+    $ docker-container run --rm api rails db:setup
+
+* Start the containers:
+
+    $ docker-compose up
+
+Them you should have the comarev-api running on `localhost:3000`
+
 ## Run tests
 
     $ bundle exec rspec

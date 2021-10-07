@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:12.2
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+  api:
+    build: .
+    command: |
+      - /bin/sh
+      - -c
+      - |
+        rm -rf tmp/pids
+        bundle exec rails s
+    volumes:
+      - .:/comarev
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
