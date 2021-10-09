@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+admin = User.where(email: 'admin@example.com').first_or_create(
+  password: '123456',
+  full_name: 'Admin test',
+  cpf: FFaker::IdentificationBR.cpf,
+  cellphone: FFaker::PhoneNumber.short_phone_number,
+  address: FFaker::Address.street_address,
+  admin: true
+)
+
+regular = User.where(email: 'regular@example.com').first_or_create(
+  password: '123456',
+  full_name: 'Regular test',
+  cpf: FFaker::IdentificationBR.cpf,
+  cellphone: FFaker::PhoneNumber.short_phone_number,
+  address: FFaker::Address.street_address
+)
+
+company = Company.where(name: 'Company test').first_or_create(
+  cnpj: FFaker::IdentificationBR.cnpj,
+  active: true
+)
+
+company.users << [admin, regular]
