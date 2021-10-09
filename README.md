@@ -1,9 +1,9 @@
 # Comarev-API
 
-COMAREV is a therapy community that offers voluntary and transitory care for people with problems arising from the use and/or dependence of psychoactive substances.
-
 ![rspec workflow](https://github.com/belgamo/comarev/actions/workflows/rspec.yml/badge.svg)
 ![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
+
+COMAREV is a therapy community that offers voluntary and transitory care for people with problems arising from the use and/or dependence of psychoactive substances.
 
 ## Description
 
@@ -12,8 +12,8 @@ The project's idea is to create the MVP of a system that allows Comarev's manage
 ## Requirements:
 
 - Ruby 2.7.0
-- Rails
-- PostgreSQL
+- Rails 6.0.3.6
+- PostgreSQL 12.2
 
 ## 🚀 Setup
 
@@ -51,28 +51,32 @@ The project's idea is to create the MVP of a system that allows Comarev's manage
 
 You will need to install [docker-compose](https://docs.docker.com/compose/install/)
 
-1- Build the app image
+1- Prepare database.yml
+
+    $ cp config/database.example.yml config/database.yml
+
+2- Build the app image
 
     $ docker-compose build
 
-2- Database setup:
+3- Database setup:
 
-    $ docker-container run --rm api rails db:setup
+    $ docker-compose run --rm api rails db:setup
 
-3- Start the containers:
+4- Start the containers:
 
     $ docker-compose up
 
 Them you should have the comarev-api running on `localhost:3000`
 
-You will have this users to login:
+There will be this users to login:
 
 admin: `admin@example.com`
 regular: `regular@example.com`
 
 with password: `123456`, for both
 
-To stop the container run:
+To stop the containers run:
 
     $ docker-compose down
 
