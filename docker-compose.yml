@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 services:
   db:
@@ -11,15 +11,12 @@ services:
   api:
     build: .
     command: |
-      - /bin/sh
-      - -c
-      - |
-        rm -rf tmp/pids
-        bundle exec rails s
+      bash -c "rm -f tmp/pids/server.pid && \
+      bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/comarev
     ports:
-      - "3000:3000"
+      - '3000:3000'
     env_file:
       - .env
     depends_on:
