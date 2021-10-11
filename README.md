@@ -51,9 +51,9 @@ The project's idea is to create the MVP of a system that allows Comarev's manage
 
 You will need to install [docker-compose](https://docs.docker.com/compose/install/)
 
-1- Prepare database.yml
+1- Prepare database.yml & .env
 
-    $ cp config/database.example.yml config/database.yml
+    $ cp config/database.example.yml config/database.yml && cp .env.example .env
 
 2- Build the app image
 
