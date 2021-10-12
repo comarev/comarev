@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CompanyPolicy do
+describe CompanyPolicy, type: :policy do
   subject { described_class.new(user, new_company) }
 
   let(:new_company) { build_stubbed(:company) }
@@ -8,8 +8,8 @@ describe CompanyPolicy do
   context 'for a regular user' do
     let(:user) { build_stubbed(:user) }
 
+    it { is_expected.to authorize(:index) }
     it { is_expected.not_to authorize(:create) }
-    it { is_expected.not_to authorize(:index) }
     it { is_expected.not_to authorize(:show) }
     it { is_expected.not_to authorize(:destroy) }
     it { is_expected.not_to authorize(:update) }
@@ -33,11 +33,11 @@ describe CompanyPolicy do
       create(:company_user, :manager, company: new_company, user: user)
     end
 
-    it { is_expected.not_to authorize(:create) }
-    it { is_expected.not_to authorize(:index) }
-    it { is_expected.not_to authorize(:destroy) }
+    it { is_expected.to authorize(:index) }
     it { is_expected.to authorize(:show) }
     it { is_expected.to authorize(:update) }
+    it { is_expected.not_to authorize(:create) }
+    it { is_expected.not_to authorize(:destroy) }
   end
 
   context 'for regular user from the company' do
@@ -48,11 +48,11 @@ describe CompanyPolicy do
       create(:company_user, :regular, company: new_company, user: user)
     end
 
+    it { is_expected.to authorize(:index) }
+    it { is_expected.to authorize(:show) }
     it { is_expected.not_to authorize(:create) }
-    it { is_expected.not_to authorize(:index) }
     it { is_expected.not_to authorize(:destroy) }
     it { is_expected.not_to authorize(:update) }
-    it { is_expected.to authorize(:show) }
   end
 
   describe '#permitted_attributes' do
@@ -106,6 +106,29 @@ describe CompanyPolicy do
       it { is_expected.to include({ user_ids: [] }) }
       it { is_expected.not_to include(:code) }
       it { is_expected.not_to include(:discount) }
+    end
+  end
+
+  describe 'policy_scope' do
+    subject { described_class::Scope.new(user, Company.all).resolve }
+
+    let!(:company1) { create(:company) }
+    let!(:company2) { create(:company) }
+
+    context 'when admin user' do
+      let(:user) { create(:user, :admin) }
+
+      it { is_expected.to include(company1) }
+      it { is_expected.to include(company2) }
+    end
+
+    context 'when other user' do
+      let(:user) { create(:user) }
+
+      let!(:relation) { create(:company_user, :regular, company: company1, user: user) }
+
+      it { is_expected.to include(company1) }
+      it { is_expected.not_to include(company2) }
     end
   end
 end
