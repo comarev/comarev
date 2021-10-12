@@ -2,7 +2,10 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show update destroy]
 
   def index
-    @companies = authorize Company.order(:name)
+    authorize(Company)
+
+    @companies = policy_scope(Company).order(:name)
+
     render json: @companies, status: :ok
   end
 
