@@ -67,9 +67,9 @@ describe CompanyPolicy do
       it { is_expected.to include(:address) }
       it { is_expected.to include(:phone) }
       it { is_expected.to include(:active) }
-      it { is_expected.to include(:code) }
       it { is_expected.to include(:discount) }
       it { is_expected.to include({ user_ids: [] }) }
+      it { is_expected.not_to include(:code) }
     end
 
     context 'for manager user' do
@@ -85,12 +85,12 @@ describe CompanyPolicy do
       it { is_expected.to include(:address) }
       it { is_expected.to include(:phone) }
       it { is_expected.to include(:active) }
-      it { is_expected.to include(:code) }
       it { is_expected.to include({ user_ids: [] }) }
+      it { is_expected.not_to include(:code) }
       it { is_expected.not_to include(:discount) }
     end
 
-    context 'for manager user' do
+    context 'for regular user' do
       let(:company) { build_stubbed(:company) }
       let(:user) { create(:user) }
 
@@ -103,8 +103,8 @@ describe CompanyPolicy do
       it { is_expected.to include(:address) }
       it { is_expected.to include(:phone) }
       it { is_expected.to include(:active) }
-      it { is_expected.to include(:code) }
       it { is_expected.to include({ user_ids: [] }) }
+      it { is_expected.not_to include(:code) }
       it { is_expected.not_to include(:discount) }
     end
   end

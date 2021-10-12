@@ -1,5 +1,5 @@
 class CompanyPolicy < ApplicationPolicy
-  DEFAULT_ATTRS = %i[name cnpj address phone active code].push(user_ids: [])
+  DEFAULT_ATTRS = %i[name cnpj address phone active].push(user_ids: [])
   ADMIN_ATTRS = %i[discount].freeze
 
   def permitted_attributes
