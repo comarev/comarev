@@ -1,8 +1,23 @@
 class CompanyPolicy < ApplicationPolicy
-  DEFAULT_ATTRS = %i[name cnpj address phone active code discount].push(user_ids: [])
+  DEFAULT_ATTRS = %i[name cnpj address phone active].push(user_ids: [])
+  ADMIN_ATTRS = %i[discount].freeze
+
+  class Scope < Scope
+    def resolve
+      if user.admin?
+        scope.all
+      else
+        scope.joins(:users).where(users: { id: user.id })
+      end
+    end
+  end
 
   def permitted_attributes
-    DEFAULT_ATTRS
+    if user.admin?
+      DEFAULT_ATTRS + ADMIN_ATTRS
+    else
+      DEFAULT_ATTRS
+    end
   end
 
   def create?
@@ -10,7 +25,7 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin?
+    user.admin? || manager?
   end
 
   def destroy?
@@ -18,10 +33,20 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def index?
-    user.admin
+    true
   end
 
   def show?
-    user.admin
+    user.admin? || belongs_to_company?
+  end
+
+  private
+
+  def manager?
+    user.company_user_for(record.id)&.manager?
+  end
+
+  def belongs_to_company?
+    record.users.include?(user)
   end
 end

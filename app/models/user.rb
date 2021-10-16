@@ -14,4 +14,8 @@ class User < ApplicationRecord
 
     avatar.url
   end
+
+  def company_user_for(company_id)
+    company_users.find_by(company_id: company_id)
+  end
 end
