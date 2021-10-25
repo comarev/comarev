@@ -9,6 +9,7 @@ RSpec.describe Company, type: :model do
     it { is_expected.to validate_presence_of(:active) }
 
     it { is_expected.to validate_uniqueness_of(:cnpj).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
 
   describe 'associations' do
