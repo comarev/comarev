@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_10_141741) do
+ActiveRecord::Schema.define(version: 2021_10_26_221043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 2021_09_10_141741) do
     t.index ["user_id"], name: "index_company_users_on_user_id"
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.float "amount", null: false
+    t.boolean "paid", default: false
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_invoices_on_user_id"
+  end
+
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "exp", null: false
@@ -76,8 +86,8 @@ ActiveRecord::Schema.define(version: 2021_09_10_141741) do
     t.string "cpf"
     t.string "address"
     t.string "cellphone"
-    t.boolean "admin", default: false
-    t.boolean "active", default: true
+    t.boolean "admin", default: false, null: false
+    t.boolean "active", default: true, null: false
     t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -86,4 +96,5 @@ ActiveRecord::Schema.define(version: 2021_09_10_141741) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "company_users", "companies", on_delete: :cascade
   add_foreign_key "company_users", "users", on_delete: :cascade
+  add_foreign_key "invoices", "users"
 end
