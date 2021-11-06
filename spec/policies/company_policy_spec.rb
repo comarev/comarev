@@ -62,14 +62,11 @@ describe CompanyPolicy, type: :policy do
       let(:company) { build_stubbed(:company) }
       let(:user) { create(:user, :admin) }
 
-      it { is_expected.to include(:name) }
-      it { is_expected.to include(:cnpj) }
-      it { is_expected.to include(:address) }
-      it { is_expected.to include(:phone) }
-      it { is_expected.to include(:active) }
-      it { is_expected.to include(:discount) }
-      it { is_expected.to include({ user_ids: [] }) }
-      it { is_expected.not_to include(:code) }
+      it do
+        is_expected.to match_array [
+          :name, :cnpj, :address, :phone, :active, { user_ids: [] }, :discount
+        ]
+      end
     end
 
     context 'for manager user' do
@@ -80,14 +77,9 @@ describe CompanyPolicy, type: :policy do
         build_stubbed(:company_user, :manager, company: company, user: user)
       end
 
-      it { is_expected.to include(:name) }
-      it { is_expected.to include(:cnpj) }
-      it { is_expected.to include(:address) }
-      it { is_expected.to include(:phone) }
-      it { is_expected.to include(:active) }
-      it { is_expected.to include({ user_ids: [] }) }
-      it { is_expected.not_to include(:code) }
-      it { is_expected.not_to include(:discount) }
+      it do
+        is_expected.to match_array [:name, :cnpj, :address, :phone, :active, { user_ids: [] }]
+      end
     end
 
     context 'for regular user' do
@@ -98,14 +90,9 @@ describe CompanyPolicy, type: :policy do
         build_stubbed(:company_user, :regular, company: company, user: user)
       end
 
-      it { is_expected.to include(:name) }
-      it { is_expected.to include(:cnpj) }
-      it { is_expected.to include(:address) }
-      it { is_expected.to include(:phone) }
-      it { is_expected.to include(:active) }
-      it { is_expected.to include({ user_ids: [] }) }
-      it { is_expected.not_to include(:code) }
-      it { is_expected.not_to include(:discount) }
+      it do
+        is_expected.to match_array [:name, :cnpj, :address, :phone, :active, { user_ids: [] }]
+      end
     end
   end
 
