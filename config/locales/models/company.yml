@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      company:
+        one: Empresa
+        other: Empresas
+    attributes:
+      company:
+        name: Nome
+        cnpj: CNPJ
+        address: Endereço
+        phone: Telefone
+        email: E-mail
+        code: Código
+        discount: Desconto
+        active: Status

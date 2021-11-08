@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+    attributes:
+      user:
+        full_name: Nome completo
+        email: E-mail
+        password: Senha
+        cpf: CPF
+        address: Endereço
+        cellphone: Celular
+        admin: Admin
+        active: Status
+        avatar: Foto de Perfil

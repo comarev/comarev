@@ -110,9 +110,7 @@ RSpec.describe User, type: :request do
       it 'returns the expected response body' do
         create_user
 
-        expect(json).to include(
-          full_name: ['não pode ficar em branco']
-        )
+        expect(json).to include('Nome completo não pode ficar em branco')
       end
     end
 
@@ -193,10 +191,7 @@ RSpec.describe User, type: :request do
         it 'returns the expected response body' do
           update_user
 
-          expect(json)
-            .to include(
-              email: ['não pode ficar em branco']
-            )
+          expect(json).to include('E-mail não pode ficar em branco')
         end
       end
 
