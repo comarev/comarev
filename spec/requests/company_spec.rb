@@ -106,9 +106,7 @@ RSpec.describe Company, type: :request do
       it 'returns the expected response body' do
         create_company
 
-        expect(json).to include(
-          name: ['não pode ficar em branco']
-        )
+        expect(json).to include('Nome não pode ficar em branco')
       end
     end
 
@@ -190,9 +188,7 @@ RSpec.describe Company, type: :request do
           update_company
 
           expect(json)
-            .to include(
-              name: ['não pode ficar em branco']
-            )
+            .to include('Nome não pode ficar em branco')
         end
       end
 
