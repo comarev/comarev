@@ -25,7 +25,7 @@ module ErrorRescuable
     errors =
       case exception.class.name
       when 'ActiveRecord::RecordInvalid'
-        exception.record.errors
+        exception.record.errors.full_messages
       else
         { message: exception }
       end
