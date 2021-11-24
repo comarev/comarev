@@ -11,6 +11,13 @@ class InvoicesController < ApplicationController
     render json: @invoice, status: :created
   end
 
+  def update
+    @invoice = Invoice.find(params[:id])
+    @invoice.update!(invoice_params)
+
+    render json: @invoice, status: :ok
+  end
+
   private
 
   def invoice_params

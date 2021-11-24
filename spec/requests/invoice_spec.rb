@@ -19,7 +19,7 @@ RSpec.describe Invoice, type: :request do
 
     let(:invoice_owner) { create(:user) }
 
-    context 'with valid data' do
+    context 'when successfuly' do
       let(:invoice_params) { attributes_for(:invoice, amount: 50.45, user_id: invoice_owner.id) }
 
       it 'returns the correct 201 response code' do
@@ -39,7 +39,7 @@ RSpec.describe Invoice, type: :request do
       end
     end
 
-    context 'with invalid data' do
+    context 'when failed' do
       let(:invoice_params) { attributes_for(:invoice, amount: nil, user_id: invoice_owner.id) }
 
       it 'returns the correct 422 response code' do
@@ -56,6 +56,45 @@ RSpec.describe Invoice, type: :request do
         create_invoice
 
         expect(json).to include('Valor não pode ficar em branco')
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    subject(:update_invoice) do
+      patch invoice_path(invoice), params: { invoice: invoice_params }, headers: headers
+    end
+
+    let!(:invoice) { create(:invoice, amount: 50.45, paid: false) }
+
+    context 'when successfuly' do
+      let(:invoice_params) { { paid: true } }
+
+      it 'updates the invoice' do
+        expect { update_invoice }.to change { invoice.reload.paid }.from(false).to(true)
+      end
+
+      it 'returns the expected', :aggregate_failures do
+        update_invoice
+
+        expect(response).to have_http_status(:ok)
+        expect(json).to include(paid: true)
+      end
+    end
+
+    context 'when failed' do
+      let(:invoice_params) { { paid: nil, amount: nil } }
+
+      it 'does not update the invoice' do
+        expect { update_invoice }.not_to(change { invoice.reload.paid })
+      end
+
+      it 'returns the correct 422 response code', :aggregate_failures do
+        update_invoice
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(json).to include('Valor não pode ficar em branco')
+        expect(json).to include('Valor não é um número')
       end
     end
   end
