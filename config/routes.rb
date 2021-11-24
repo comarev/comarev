@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, skip: [:sessions]
+
   as :user do
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
@@ -7,4 +8,5 @@ Rails.application.routes.draw do
 
   resources :users
   resources :companies
+  resources :invoices, except: :destroy
 end

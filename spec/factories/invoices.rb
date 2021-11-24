@@ -3,6 +3,6 @@ FactoryBot.define do
     user
     amount { 10.0 }
     paid { false }
-    status { Invoice.status.keys.sample }
+    status { Invoice.statuses.keys.sample }
   end
 end
