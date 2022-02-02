@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update_attributes!(permitted_attributes(@user))
+    @user.update!(permitted_attributes(@user))
 
     render json: @user, status: :ok
   end

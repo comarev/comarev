@@ -16,5 +16,6 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:companies) }
+    it { is_expected.to have_many(:company_users).dependent(:destroy) }
   end
 end

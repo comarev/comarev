@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_221043) do
+ActiveRecord::Schema.define(version: 2022_02_02_220750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2021_10_26_221043) do
     t.integer "discount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["cnpj"], name: "index_companies_on_cnpj", unique: true
+    t.index ["code"], name: "index_companies_on_code", unique: true
   end
 
   create_table "company_users", force: :cascade do |t|

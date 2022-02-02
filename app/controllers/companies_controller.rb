@@ -21,7 +21,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company.update_attributes!(permitted_attributes(@company))
+    @company.update!(permitted_attributes(@company))
 
     render json: @company, status: :ok
   end
