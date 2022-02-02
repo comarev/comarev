@@ -4,14 +4,14 @@ require:
 
 AllCops:
   Exclude:
-    - 'db/**/*'
-    - 'config/**/*'
-    - 'script/**/*'
-    - 'bin/**/*'
-    - 'tmp/**/*'
-    - 'vendor/**/*'
-    - 'log/**/*'
-    - 'node_modules/**/*'
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "bin/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "log/**/*"
+    - "node_modules/**/*"
     - !ruby/regexp /old_and_unused\.rb$/
 
 Gemspec/DateAssignment:
@@ -97,6 +97,8 @@ Rails/EagerEvaluationLogMessage:
   Enabled: true
 Rails/ExpandedDateRange:
   Enabled: true
+Rails/FilePath:
+  Enabled: false
 Rails/FindById:
   Enabled: true
 Rails/I18nLocaleAssignment:
@@ -143,8 +145,13 @@ RSpec/ImplicitSubject:
   Enabled: false
 RSpec/Rails/AvoidSetupHook:
   Enabled: true
+RSpec/LetSetup:
+  Enabled: true
 RSpec/MultipleExpectations:
   Enabled: false
+RSpec/NestedGroups:
+  Enabled: true
+  Max: 5
 Style/AndOr:
   Enabled: false
 Style/ClassAndModuleChildren:
