@@ -5,7 +5,6 @@ FactoryBot.define do
     address { FFaker::Address.street_name }
     phone { FFaker::PhoneNumberBR.phone_number }
     active { true }
-    code { FFaker::PhoneNumber.phone_number }
     discount { 10 }
   end
 end
