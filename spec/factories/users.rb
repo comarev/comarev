@@ -6,6 +6,7 @@ FactoryBot.define do
     address { FFaker::Address.street_name }
     cpf { FFaker::IdentificationBR.cpf }
     cellphone { FFaker::PhoneNumberBR.mobile_phone_number }
+    admin { false }
   end
 
   trait :admin do
