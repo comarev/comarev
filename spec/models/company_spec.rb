@@ -6,9 +6,6 @@ RSpec.describe Company, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:cnpj) }
-    it { is_expected.to validate_presence_of(:code) }
-
-    it { is_expected.to validate_inclusion_of(:active).in_array([true, false]) }
 
     it { is_expected.to validate_uniqueness_of(:cnpj).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
@@ -16,5 +13,17 @@ RSpec.describe Company, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:users) }
+  end
+
+  describe 'callbacks' do
+    describe 'assign_code' do
+      subject { company.code }
+
+      let(:company) { build(:company, code: nil) }
+
+      before { company.save }
+
+      it { is_expected.to be_present }
+    end
   end
 end
