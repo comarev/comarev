@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :request do
   let(:user) { create(:user, :admin) }
-  let(:headers) { { "Authorization": sign_in(user) } }
+  let(:headers) { { Authorization: sign_in(user) } }
 
   describe 'GET /index' do
     subject(:fetch_users) do
@@ -67,10 +67,11 @@ RSpec.describe User, type: :request do
   end
 
   describe 'POST /create' do
-    before { headers }
     subject(:create_user) do
       post users_path, params: { user: user_params }, headers: headers
     end
+
+    before { headers }
 
     context 'with valid data' do
       let(:user_params) { attributes_for(:user, full_name: 'Mary Jane') }
@@ -84,7 +85,7 @@ RSpec.describe User, type: :request do
       it 'creates the new record' do
         expect do
           create_user
-        end.to change(User, :count).by(1)
+        end.to change(described_class, :count).by(1)
       end
 
       it 'returns the expected response body' do
@@ -104,7 +105,7 @@ RSpec.describe User, type: :request do
       end
 
       it 'does not create the new record' do
-        expect { create_user }.not_to change(User, :count)
+        expect { create_user }.not_to change(described_class, :count)
       end
 
       it 'returns the expected response body' do
@@ -137,12 +138,13 @@ RSpec.describe User, type: :request do
   end
 
   describe 'PATCH /update' do
-    before { headers }
     subject(:update_user) do
       patch user_path(target_user),
         params: user_params,
         headers: headers
     end
+
+    before { headers }
 
     context 'when the user exists' do
       let(:target_user) { create(:user) }
@@ -159,7 +161,7 @@ RSpec.describe User, type: :request do
         it 'returns the correct 200 response code' do
           expect do
             update_user
-          end.to change(User, :count).by(1)
+          end.to change(described_class, :count).by(1)
 
           expect(response).to have_http_status(:ok)
         end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe UserPolicy do
-  subject { UserPolicy.new(user, new_user) }
+  subject { described_class.new(user, new_user) }
 
   let(:new_user) { build_stubbed(:user) }
 

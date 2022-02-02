@@ -139,6 +139,8 @@ Rails/WhereNot:
   Enabled: true
 RSpec/IdenticalEqualityAssertion:
   Enabled: true
+RSpec/ImplicitSubject:
+  Enabled: false
 RSpec/Rails/AvoidSetupHook:
   Enabled: true
 RSpec/MultipleExpectations:

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Company, type: :request do
   let(:user) { create(:user, :admin) }
-  let(:headers) { { "Authorization": sign_in(user) } }
+  let(:headers) { { Authorization: sign_in(user) } }
 
   describe 'GET /index' do
     subject(:fetch_companies) do
@@ -63,10 +63,11 @@ RSpec.describe Company, type: :request do
   end
 
   describe 'POST /create' do
-    before { headers }
     subject(:create_company) do
       post companies_path, params: { company: company_params }, headers: headers
     end
+
+    before { headers }
 
     context 'with valid data' do
       let(:company_params) { attributes_for(:company, name: 'Tesla') }
@@ -80,7 +81,7 @@ RSpec.describe Company, type: :request do
       it 'creates the new record' do
         expect do
           create_company
-        end.to change(Company, :count).by(1)
+        end.to change(described_class, :count).by(1)
       end
 
       it 'returns the expected response body' do
@@ -100,7 +101,7 @@ RSpec.describe Company, type: :request do
       end
 
       it 'does not create the new record' do
-        expect { create_company }.not_to change(Company, :count)
+        expect { create_company }.not_to change(described_class, :count)
       end
 
       it 'returns the expected response body' do
@@ -133,12 +134,13 @@ RSpec.describe Company, type: :request do
   end
 
   describe 'PATCH /update' do
-    before { headers }
     subject(:update_company) do
       patch company_path(target_company),
         params: company_params,
         headers: headers
     end
+
+    before { headers }
 
     context 'when the company exists' do
       let(:target_company) { create(:company) }
@@ -155,7 +157,7 @@ RSpec.describe Company, type: :request do
         it 'returns the correct 200 response code' do
           expect do
             update_company
-          end.to change(Company, :count).by(1)
+          end.to change(described_class, :count).by(1)
 
           expect(response).to have_http_status(:ok)
         end
