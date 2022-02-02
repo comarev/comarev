@@ -1,80 +1,186 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
   Exclude:
-    - "db/**/*"
-    - "config/**/*"
-    - "script/**/*"
-    - "bin/**/*"
-    - "tmp/**/*"
-    - "vendor/**/*"
-    - "log/**/*"
-    - "node_modules/**/*"
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'log/**/*'
+    - 'node_modules/**/*'
     - !ruby/regexp /old_and_unused\.rb$/
 
+Gemspec/DateAssignment:
+  Enabled: true
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
-
 Layout/ArrayAlignment:
   EnforcedStyle: with_fixed_indentation
-
 Layout/FirstArrayElementIndentation:
   Enabled: false
-
 Layout/FirstHashElementIndentation:
   Enabled: false
-
 Layout/HashAlignment:
   EnforcedHashRocketStyle: key
   EnforcedColonStyle: key
   EnforcedLastArgumentHashStyle: ignore_implicit
-
 Layout/LineLength:
   Max: 99
-
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
-
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
-
 Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
-
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+Lint/AmbiguousAssignment:
+  Enabled: true
+Lint/DeprecatedConstants:
+  Enabled: true
+Lint/DuplicateBranch:
+  Enabled: true
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+Lint/EmptyBlock:
+  Enabled: true
+Lint/EmptyClass:
+  Enabled: true
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+Lint/NumberedParameterAssignment:
+  Enabled: true
+Lint/OrAssignmentToConstant:
+  Enabled: true
+Lint/RedundantDirGlobSort:
+  Enabled: true
+Lint/SymbolConversion:
+  Enabled: true
+Lint/ToEnumArguments:
+  Enabled: true
+Lint/TripleQuotes:
+  Enabled: true
+Lint/UnexpectedBlockArity:
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
 Metrics/AbcSize:
   Max: 25
-
 Metrics/BlockLength:
   Max: 99
   Exclude:
     - spec/**/*
-
 Metrics/MethodLength:
   CountComments: false
   Max: 90
-
 Naming/PredicateName:
   Enabled: false
-
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+Rails/AddColumnIndex:
+  Enabled: true
+Rails/AfterCommitOverride:
+  Enabled: true
+Rails/AttributeDefaultBlockValue:
+  Enabled: true
+Rails/CompactBlank:
+  Enabled: true
+Rails/DurationArithmetic:
+  Enabled: true
+Rails/EagerEvaluationLogMessage:
+  Enabled: true
+Rails/ExpandedDateRange:
+  Enabled: true
+Rails/FindById:
+  Enabled: true
+Rails/I18nLocaleAssignment:
+  Enabled: true
+Rails/Inquiry:
+  Enabled: true
+Rails/MailerName:
+  Enabled: true
+Rails/MatchRoute:
+  Enabled: true
+Rails/NegateInclude:
+  Enabled: true
+Rails/Pluck:
+  Enabled: true
+Rails/PluckInWhere:
+  Enabled: true
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: true
+Rails/RedundantTravelBack:
+  Enabled: true
+Rails/RenderInline:
+  Enabled: true
+Rails/RenderPlainText:
+  Enabled: true
+Rails/RootJoinChain:
+  Enabled: true
+Rails/ShortI18n:
+  Enabled: true
+Rails/SquishedSQLHeredocs:
+  Enabled: true
+Rails/TimeZoneAssignment:
+  Enabled: true
+Rails/UnusedIgnoredColumns:
+  Enabled: true
+Rails/WhereEquals:
+  Enabled: true
+Rails/WhereExists:
+  Enabled: true
+Rails/WhereNot:
+  Enabled: true
+RSpec/IdenticalEqualityAssertion:
+  Enabled: true
+RSpec/Rails/AvoidSetupHook:
+  Enabled: true
+RSpec/MultipleExpectations:
+  Enabled: false
 Style/AndOr:
   Enabled: false
-
 Style/ClassAndModuleChildren:
   Enabled: false
-
 Style/Documentation:
   Enabled: false
-
 Style/EachWithObject:
   Enabled: false
-
 Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: never
-
 Style/RedundantReturn:
   Enabled: true
-
 Style/Semicolon:
   AllowAsExpressionSeparator: true
-
 Style/Encoding:
   Enabled: false
+Style/ArgumentsForwarding:
+  Enabled: true
+Style/CollectionCompact:
+  Enabled: true
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
+Style/EndlessMethod:
+  Enabled: true
+Style/HashConversion:
+  Enabled: true
+Style/HashExcept:
+  Enabled: true
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
+Style/NegatedIfElseCondition:
+  Enabled: true
+Style/NilLambda:
+  Enabled: true
+Style/RedundantArgument:
+  Enabled: true
+Style/StringChars:
+  Enabled: true
+Style/SwapValues:
+  Enabled: true
