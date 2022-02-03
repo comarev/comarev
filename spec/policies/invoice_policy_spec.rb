@@ -5,7 +5,7 @@ RSpec.describe InvoicePolicy, type: :policy do
 
   let(:invoice) { build_stubbed(:invoice) }
 
-  context 'for a regular user' do
+  context 'when a regular user' do
     let(:user) { build_stubbed(:user) }
 
     it { is_expected.to authorize(:index) }
@@ -13,7 +13,7 @@ RSpec.describe InvoicePolicy, type: :policy do
     it { is_expected.not_to authorize(:update) }
   end
 
-  context 'for an admin user' do
+  context 'when an admin user' do
     let(:user) { build_stubbed(:user, :admin) }
 
     it { is_expected.to authorize(:index) }

@@ -5,6 +5,14 @@ class Company < ApplicationRecord
   has_many :company_users, dependent: :destroy
   has_many :users, through: :company_users
 
+  has_many :managers,
+    -> { where(company_users: { role: :manager }) },
+    through: :company_users, source: :user
+
+  has_many :regulars,
+    -> { where(company_users: { role: :regular }) },
+    through: :company_users, source: :user
+
   before_validation :assign_code
 
   private
