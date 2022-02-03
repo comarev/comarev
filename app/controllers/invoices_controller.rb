@@ -1,17 +1,20 @@
 class InvoicesController < ApplicationController
   def index
-    @invoices = Invoice.order(:created_at)
+    authorize(Invoice)
+    @invoices = policy_scope(Invoice).order(created_at: :desc)
 
     render json: @invoices, status: :ok
   end
 
   def create
+    authorize(Invoice)
     @invoice = Invoice.create!(invoice_params)
 
     render json: @invoice, status: :created
   end
 
   def update
+    authorize(Invoice)
     @invoice = Invoice.find(params[:id])
     @invoice.update!(invoice_params)
 
