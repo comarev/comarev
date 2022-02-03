@@ -7,7 +7,9 @@ class CompanySerializer < ActiveModel::Serializer
     :code,
     :discount,
     :active,
-    :users,
     :created_at,
     :updated_at
+
+  has_many :managers, serializer: UserSerializer
+  has_many :regulars, serializer: UserSerializer
 end

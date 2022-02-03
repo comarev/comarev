@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :company_users, dependent: :destroy
   has_many :companies, through: :company_users
 
+  scope :admins, -> { where(admin: true) }
+
   def picture_url
     return nil if avatar.file.nil?
 

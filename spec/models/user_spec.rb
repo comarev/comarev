@@ -18,4 +18,16 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:companies) }
     it { is_expected.to have_many(:company_users).dependent(:destroy) }
   end
+
+  describe 'scopes' do
+    describe '.admins' do
+      subject { described_class.admins }
+
+      let!(:admin) { create(:user, :admin) }
+      let!(:user) { create(:user) }
+
+      it { is_expected.to include(admin) }
+      it { is_expected.not_to include(user) }
+    end
+  end
 end

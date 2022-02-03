@@ -139,6 +139,8 @@ Rails/WhereExists:
   Enabled: true
 Rails/WhereNot:
   Enabled: true
+RSpec/ExampleLength:
+  Enabled: false
 RSpec/IdenticalEqualityAssertion:
   Enabled: true
 RSpec/ImplicitSubject:
