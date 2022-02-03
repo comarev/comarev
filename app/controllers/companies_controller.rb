@@ -21,7 +21,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company.update_attributes!(permitted_attributes(@company))
+    @company.update!(permitted_attributes(@company))
 
     render json: @company, status: :ok
   end
@@ -39,7 +39,8 @@ class CompaniesController < ApplicationController
   end
 
   def company_params
-    company_params = %i[name cnpj address phone active code discount].push(user_ids: [])
+    company_params = %i[name cnpj address phone active discount].push(user_ids: [])
+
     params.require(:company).permit(company_params)
   end
 end

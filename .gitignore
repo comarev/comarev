@@ -35,3 +35,4 @@
 .tool-versions
 /coverage
 /config/database.yml
+.prettierrc

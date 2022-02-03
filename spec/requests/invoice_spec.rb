@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Invoice, type: :request do
   let(:user) { create(:user, :admin) }
-  let(:headers) { { "Authorization": sign_in(user) } }
+  let(:headers) { { Authorization: sign_in(user) } }
 
   describe 'GET #index' do
     it 'returns http_status ok' do
@@ -29,7 +29,7 @@ RSpec.describe Invoice, type: :request do
       end
 
       it 'creates the new record' do
-        expect { create_invoice }.to change(Invoice, :count).by(1)
+        expect { create_invoice }.to change(described_class, :count).by(1)
       end
 
       it 'returns the expected response body' do
@@ -49,7 +49,7 @@ RSpec.describe Invoice, type: :request do
       end
 
       it 'does not create the new record' do
-        expect { create_invoice }.not_to change(Invoice, :count)
+        expect { create_invoice }.not_to change(described_class, :count)
       end
 
       it 'returns the expected response body' do
