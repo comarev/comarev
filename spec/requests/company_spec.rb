@@ -70,7 +70,13 @@ RSpec.describe Company, type: :request do
     before { headers }
 
     context 'with valid data' do
-      let(:company_params) { attributes_for(:company, name: 'Tesla') }
+      let(:company_params) do
+        attributes_for(:company, name: 'Tesla')
+          .merge(manager_ids: [manager.id], regular_ids: [regular.id])
+      end
+
+      let(:regular) { create(:user) }
+      let(:manager) { create(:user) }
 
       it 'returns the correct 201 response code' do
         create_company
@@ -79,15 +85,24 @@ RSpec.describe Company, type: :request do
       end
 
       it 'creates the new record' do
-        expect do
-          create_company
-        end.to change(described_class, :count).by(1)
+        expect { create_company }.to change(described_class, :count).by(1)
       end
 
       it 'returns the expected response body' do
         create_company
 
         expect(json).to include(name: 'Tesla')
+      end
+
+      it 'creates a new company, and assigns the users correctly', :aggregate_failures do
+        create_company
+
+        company = assigns(:company)
+
+        expect(company.managers).to include(manager)
+        expect(company.regulars).to include(regular)
+        expect(company.managers).not_to include(regular)
+        expect(company.regulars).not_to include(manager)
       end
     end
 
