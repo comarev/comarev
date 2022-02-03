@@ -10,4 +10,10 @@ class UserSerializer < ActiveModel::Serializer
     :active,
     :created_at,
     :updated_at
+
+  attribute(:companies) do
+    object.company_users.map do |cu|
+      { role: cu.role, company: cu.company }
+    end
+  end
 end
