@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :users
   resources :companies
   resources :invoices, except: :destroy
+  post 'check_invoices', to: 'invoices#check'
 end
