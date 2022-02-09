@@ -20,4 +20,8 @@ class InvoicePolicy < ApplicationPolicy
   def update?
     create?
   end
+
+  def check?
+    index?
+  end
 end

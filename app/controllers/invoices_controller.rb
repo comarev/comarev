@@ -25,6 +25,15 @@ class InvoicesController < ApplicationController
     render json: @invoice, status: :ok
   end
 
+  def check
+    authorize(Invoice)
+    all_paid = policy_scope(Invoice).all? { |x| x.paid? }
+    company = Company.find_by(code: params[:code])
+
+    return render status: :unprocessable_entity if !all_paid
+    render json: company, status: :ok
+  end
+
   private
 
   def set_invoice
