@@ -1,5 +1,5 @@
 class CompanyPolicy < ApplicationPolicy
-  DEFAULT_ATTRS = %i[name cnpj address phone active].push(manager_ids: [], regular_ids: [])
+  DEFAULT_ATTRS = %i[name cnpj address phone active avatar].push(manager_ids: [], regular_ids: [])
   ADMIN_ATTRS = %i[discount].freeze
 
   class Scope < Scope

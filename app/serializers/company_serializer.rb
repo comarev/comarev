@@ -4,6 +4,7 @@ class CompanySerializer < ActiveModel::Serializer
     :address,
     :cnpj,
     :phone,
+    :picture_url,
     :code,
     :discount,
     :active,

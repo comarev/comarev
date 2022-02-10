@@ -9,6 +9,12 @@ class CompaniesController < ApplicationController
     render json: @companies, status: :ok
   end
 
+  def showcase
+    @companies = Company.all
+
+    render json: @companies, status: :ok
+  end
+
   def show
     render json: @company, status: :ok
   end
@@ -39,7 +45,7 @@ class CompaniesController < ApplicationController
   end
 
   def company_params
-    company_params = %i[name cnpj address phone active discount]
+    company_params = %i[name cnpj address phone active discount avatar]
       .push(manager_ids: [], regular_ids: [])
 
     params.require(:company).permit(company_params)
