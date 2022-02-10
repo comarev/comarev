@@ -10,12 +10,12 @@ gem 'carrierwave', '~> 2.0'
 gem 'devise'
 gem 'devise-jwt'
 gem 'fog-aws'
+gem 'mini_magick'
 gem 'pg'
 gem 'puma', '~> 4.1'
 gem 'pundit'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
-gem "mini_magick"
 
 group :test do
   gem 'simplecov'
