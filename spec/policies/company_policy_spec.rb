@@ -64,7 +64,7 @@ describe CompanyPolicy, type: :policy do
 
       it do
         is_expected.to match_array [
-          :name, :cnpj, :address, :phone, :active, :discount,
+          :name, :cnpj, :address, :phone, :active, :discount, :avatar,
           { manager_ids: [], regular_ids: [] }
         ]
       end
@@ -80,7 +80,7 @@ describe CompanyPolicy, type: :policy do
 
       it do
         is_expected.to match_array [
-          :name, :cnpj, :address, :phone, :active,
+          :name, :cnpj, :address, :phone, :active, :avatar,
           { manager_ids: [], regular_ids: [] }
         ]
       end
@@ -96,7 +96,7 @@ describe CompanyPolicy, type: :policy do
 
       it do
         is_expected.to match_array [
-          :name, :cnpj, :address, :phone, :active,
+          :name, :cnpj, :address, :phone, :active, :avatar,
           { manager_ids: [], regular_ids: [] }
         ]
       end

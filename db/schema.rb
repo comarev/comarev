@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_133701) do
+ActiveRecord::Schema.define(version: 2022_02_10_002904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2022_02_07_133701) do
     t.integer "discount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatar"
     t.index ["cnpj"], name: "index_companies_on_cnpj", unique: true
     t.index ["code"], name: "index_companies_on_code", unique: true
   end
