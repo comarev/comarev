@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_002904) do
+ActiveRecord::Schema.define(version: 2022_02_11_003439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 2022_02_10_002904) do
     t.index ["user_id"], name: "index_company_users_on_user_id"
   end
 
+  create_table "discount_requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
+    t.integer "received_discount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_discount_requests_on_company_id"
+    t.index ["user_id"], name: "index_discount_requests_on_user_id"
+  end
+
   create_table "invoices", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.float "amount", null: false
@@ -100,5 +110,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_002904) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "company_users", "companies", on_delete: :cascade
   add_foreign_key "company_users", "users", on_delete: :cascade
+  add_foreign_key "discount_requests", "companies"
+  add_foreign_key "discount_requests", "users"
   add_foreign_key "invoices", "users"
 end
