@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :companies
-  get 'showcase', to: 'companies#showcase'
   resources :invoices, except: :destroy
+
+  get 'showcase', to: 'companies#showcase'
   post 'check_invoices', to: 'invoices#check'
 end

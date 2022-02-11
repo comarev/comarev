@@ -27,12 +27,17 @@ class InvoicesController < ApplicationController
 
   def check
     authorize(Invoice)
-    all_paid = policy_scope(Invoice).all?(&:paid?)
-    company = Company.find_by(code: params[:code])
+    @company = Company.find_by!(code: params[:code])
 
-    return render status: :unprocessable_entity unless all_paid
+    return head :unprocessable_entity unless policy_scope(Invoice).all?(&:paid?)
 
-    render json: company, status: :ok
+    DiscountRequest.create!(
+      company: @company,
+      user: current_user,
+      received_discount: @company.discount
+    )
+
+    render json: @company, status: :ok
   end
 
   private
