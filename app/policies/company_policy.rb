@@ -40,6 +40,10 @@ class CompanyPolicy < ApplicationPolicy
     user.admin? || belongs_to_company?
   end
 
+  def discount_requests?
+    show?
+  end
+
   private
 
   def manager?
@@ -47,6 +51,6 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def belongs_to_company?
-    record.users.include?(user)
+    record.company_users.pluck(:user_id).include?(user.id)
   end
 end
