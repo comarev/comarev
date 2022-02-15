@@ -3,69 +3,114 @@
 ![rspec workflow](https://github.com/belgamo/comarev/actions/workflows/rspec.yml/badge.svg)
 ![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
 
-COMAREV is a therapy community that offers voluntary and transitory care for people with problems arising from the use and/or dependence of psychoactive substances.
+# Welcome Contributors!
 
-## Description
+If you are new here, there are some things you need to know:
 
-The project's idea is to create the MVP of a system that allows Comarev's managers to manage the entity's contributors and partners, whose objective is to raise funds. The entity will look for stores and businesses for discounts for monthly contributors. The contributor will have access to an app and if they are up to date with the contribution, they can get discounted purchases from partners committed to a QR CODE through an app.
+- This is a 100% volunteer-supported project, please be patient with your correspondence.
+- Check the Development section before starting to contribute.
+- This is the back end part of the Comarev project. Check the front side by clicking [here](https://github.com/comarev/comarev-dashboard).
+- This project was built with [RubyOnRails](https://rubyonrails.org/).
 
-## Requirements:
+The core teams leads are: @belgamo @m-pereira
+
+## Origins
+
+First of all, let's introduce what Comarev is. Comarev is a social project based in Batatais - São Paulo, Brazil. Their goal is to offer an opportunity and a new life for drug addicts by giving them full support through sports, work out and psychological treatment FOR FREE. You can get more information [here](http://comarev.com.br/). During the COVID-19 pandemic in 2020, they lost some financial support from the government and had to come up with new ideas to raise money for the project because they have a lot of costs and serious professionals working there.
+Monthly, the institution used to get some money from contributors, so they wanted to expand the number of contributors by offering some benefits such as discounts in local stores, supermarkets and so on. To make this possible, they needed a system to control everything. Immediately, we opened up a group on discord and started meeting weekly to study and develop the code to release a MVP as soon as possible. And we got it!
+
+## About
+
+This application is a partner management system. Basically, the Comarev admins register the interested companies that want to give a discount on their products/services to the Comarev contributors who are also registered in the system. Then, when the contributor buys something at the company (Comarev partner), they just have to scan a QR Code emitted in our dashboard and the system will return if they are ok with the payment (contribution), or not. If so, the contributor can get a discount.
+
+## Roadmap
+
+Check [our board](https://github.com/comarev/comarev/projects/1) for more details about what we're building.
+
+- [x] Comarev API MVP
+
+The core of this system is ready and running on production. But there are lot of improvements we can do and we need your help!
+
+## Development
+
+### Tech Stack
+
+Some of the most famous libraries that we're using:
+
+- rails
+- activerecord
+- postgresql
+- devise
+- pundit
+- rspec
+
+### Pre-requisites
 
 - Ruby 2.7.0
 - Rails 6.0.3.6
-- PostgreSQL 12.2
+- PostgreSQL >= 12.2
 
-## 🚀 Setup
+### Getting started
 
-1- Clone the repo to your local:
+Clone the project from Github:
 
-    $ git clone git@github.com:comarev/comarev.git && cd comarev
+    git clone git@github.com:comarev/comarev.git && cd comarev
 
-2- Install dependencies:
+Install dependencies:
 
-    $ bundle install
+    bundle install
 
-3- Prepare database.yml
+Create a **.env** file by copying the existing one:
 
-    $ cp config/database.example.yml config/database.yml
+    cp .env.example .env
 
-4- Go to the database.yml file and fill in your postgreSQL data
+Go to the .env file and set this:
 
-    host: '<your host>'
-    username: '<your PostgreSQL username>'
-    password: '<your PostgreSQL password>'
+```
+PG_HOST=<your_database_host>
+PG_USERNAME=<your_database_username>
+PG_PASSWORD=<your_database_password>
+```
 
-5- Create the database for the current environment
+Prepare database.yml:
 
-    $ rails db:create
+    cp config/database.example.yml config/database.yml
 
-6- Run migrations for the current environment.
+Create the database:
 
-    $ rails db:migrate
+    bundle exec rails db:create
 
-7 - Run the server
+Run migrations:
 
-    $ rails s
+    bundle exec rails db:migrate
+
+Run the server:
+
+    bundle exec rails s
+
+Run tests:
+
+    bundle exec rspec
 
 ### Setup with docker
 
 You will need to install [docker-compose](https://docs.docker.com/compose/install/)
 
-1- Prepare database.yml & .env
+Prepare database.yml & .env
 
-    $ cp config/database.example.yml config/database.yml && cp .env.example .env
+    cp config/database.example.yml config/database.yml && cp .env.example .env
 
-2- Build the app image
+Build the app image
 
-    $ docker-compose build
+    docker-compose build
 
-3- Database setup:
+Database setup:
 
-    $ docker-compose run --rm api rails db:setup
+    docker-compose run --rm api rails db:setup
 
-4- Start the containers:
+Start the containers:
 
-    $ docker-compose up
+    docker-compose up
 
 Them you should have the comarev-api running on `localhost:3000`
 
@@ -78,8 +123,27 @@ with password: `123456`, for both
 
 To stop the containers run:
 
-    $ docker-compose down
+    docker-compose down
 
-## Run tests
+## Application Concepts
 
-    $ bundle exec rspec
+### Users
+
+A user can be an `admin`, `manager`, `emplyoee` or a `customer`.
+
+- Admins are the Comarev employees and can constrol the entire system. They are able to create the other kind of users. To become an admin, the user need the `admin` attibute `true`.
+- Managers are the company managers. They can emmit their QR Code and also check if a user is able to get discount. To become a manager, the user needs to be assigned to a company.
+- Employees do the same as managers, but they can't invite other employees or manage the company config.
+- Customers are the Comarev contributors. They are supposed to pay invoices and get discounts. If the user is neither an admin nor a manager, he's a customer.
+
+### Companies
+
+A company is a comarev partner. They offer discounts to the Comarev contributors.
+
+### Invoices
+
+A invoice is created for a user. When all invoices are paid, the user is able to get a discount. Invoices can only be created and mark as paid by an admin user, but customers can visualize them.
+
+###
+
+Thanks!
