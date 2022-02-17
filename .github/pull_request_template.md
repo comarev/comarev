@@ -8,4 +8,4 @@
 
 #### How to test it?
 
-- Help the reviewers test the functionality of your code.
+- Describe how can we test the new feature/fixed bug.
