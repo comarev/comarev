@@ -3,6 +3,9 @@
 ![rspec workflow](https://github.com/belgamo/comarev/actions/workflows/rspec.yml/badge.svg)
 ![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 This application is a partner management system. Basically, the Comarev admins register the interested companies that want to give a discount on their products/services to the Comarev contributors who are also registered in the system. Then, when the contributor buys something at the company (Comarev partner), they just have to scan a QR Code emitted in our dashboard and the system will return if they are ok with the payment (contribution), or not. If so, the contributor can get a discount.
 
 Please check the [WHO_WE_ARE](WHO_WE_ARE.md) section for more information.
@@ -120,3 +123,10 @@ A invoice is created for a user. When all invoices are paid, the user is able to
 ## Found this project interesting?
 
 If you found this project useful, then please consider leaving a :star: on Github, thanks :D
+
+## Contributors ✨
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
