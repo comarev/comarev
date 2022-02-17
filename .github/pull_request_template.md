@@ -6,6 +6,6 @@
 
 - Why we are performing these changes.
 
-#### How it has been tested?
+#### How to test it?
 
-- Help the reviewer testing the functionality of your code.
+- Help the reviewers test the functionality of your code.
