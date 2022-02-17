@@ -3,25 +3,15 @@
 ![rspec workflow](https://github.com/belgamo/comarev/actions/workflows/rspec.yml/badge.svg)
 ![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
 
-# Welcome Contributors!
-
-If you are new here, there are some things you need to know:
-
-- This is a 100% volunteer-supported project, please be patient with your correspondence.
-- Check the Development section before starting to contribute.
-- This is the back end part of the Comarev project. Check the front side by clicking [here](https://github.com/comarev/comarev-dashboard).
-- This project was built with [RubyOnRails](https://rubyonrails.org/).
-
-The core teams leads are: @belgamo @m-pereira
-
-## Origins
-
-First of all, let's introduce what Comarev is. Comarev is a social project based in Batatais - São Paulo, Brazil. Their goal is to offer an opportunity and a new life for drug addicts by giving them full support through sports, work out and psychological treatment FOR FREE. You can get more information [here](http://comarev.com.br/). During the COVID-19 pandemic in 2020, they lost some financial support from the government and had to come up with new ideas to raise money for the project because they have a lot of costs and serious professionals working there.
-Monthly, the institution used to get some money from contributors, so they wanted to expand the number of contributors by offering some benefits such as discounts in local stores, supermarkets and so on. To make this possible, they needed a system to control everything. Immediately, we opened up a group on discord and started meeting weekly to study and develop the code to release a MVP as soon as possible. And we got it!
-
-## About
-
 This application is a partner management system. Basically, the Comarev admins register the interested companies that want to give a discount on their products/services to the Comarev contributors who are also registered in the system. Then, when the contributor buys something at the company (Comarev partner), they just have to scan a QR Code emitted in our dashboard and the system will return if they are ok with the payment (contribution), or not. If so, the contributor can get a discount.
+
+Please check the [WHO_WE_ARE](WHO_WE_ARE.md) section for more information.
+
+## Welcome Contributors!
+
+Please feel free to contribute! While we welcome all contributions to this app, pull-requests that address outstanding Issues and have appropriate test coverage for them will be strongly prioritized.
+
+Please check the [Contributing](CONTRIBUTING.md) section for more information.
 
 ## Roadmap
 
@@ -32,23 +22,6 @@ Check [our board](https://github.com/comarev/comarev/projects/1) for more detail
 The core of this system is ready and running on production. But there are lot of improvements we can do and we need your help!
 
 ## Development
-
-### Tech Stack
-
-Some of the most famous libraries that we're using:
-
-- rails
-- activerecord
-- postgresql
-- devise
-- pundit
-- rspec
-
-### Pre-requisites
-
-- Ruby 2.7.0
-- Rails 6.0.3.6
-- PostgreSQL >= 12.2
 
 ### Getting started
 
@@ -144,6 +117,6 @@ A company is a comarev partner. They offer discounts to the Comarev contributors
 
 A invoice is created for a user. When all invoices are paid, the user is able to get a discount. Invoices can only be created and mark as paid by an admin user, but customers can visualize them.
 
-###
+## Found this project interesting?
 
-Thanks!
+If you found this project useful, then please consider leaving a :star: on Github, thanks :D
