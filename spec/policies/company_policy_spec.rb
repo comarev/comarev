@@ -13,6 +13,7 @@ describe CompanyPolicy, type: :policy do
     it { is_expected.not_to authorize(:show) }
     it { is_expected.not_to authorize(:destroy) }
     it { is_expected.not_to authorize(:update) }
+    it { is_expected.not_to authorize(:discount_requests) }
   end
 
   context 'when an admin user' do
@@ -23,6 +24,7 @@ describe CompanyPolicy, type: :policy do
     it { is_expected.to authorize(:show) }
     it { is_expected.to authorize(:destroy) }
     it { is_expected.to authorize(:update) }
+    it { is_expected.to authorize(:discount_requests) }
   end
 
   context 'when manager user' do
@@ -38,6 +40,7 @@ describe CompanyPolicy, type: :policy do
     it { is_expected.to authorize(:update) }
     it { is_expected.not_to authorize(:create) }
     it { is_expected.not_to authorize(:destroy) }
+    it { is_expected.to authorize(:discount_requests) }
   end
 
   context 'when regular user from the company' do
@@ -53,6 +56,7 @@ describe CompanyPolicy, type: :policy do
     it { is_expected.not_to authorize(:create) }
     it { is_expected.not_to authorize(:destroy) }
     it { is_expected.not_to authorize(:update) }
+    it { is_expected.to authorize(:discount_requests) }
   end
 
   describe '#permitted_attributes' do
@@ -64,7 +68,8 @@ describe CompanyPolicy, type: :policy do
 
       it do
         is_expected.to match_array [
-          :name, :cnpj, :address, :phone, :active, { user_ids: [] }, :discount
+          :name, :cnpj, :address, :phone, :active, :discount, :avatar,
+          { manager_ids: [], regular_ids: [] }
         ]
       end
     end
@@ -78,7 +83,10 @@ describe CompanyPolicy, type: :policy do
       end
 
       it do
-        is_expected.to match_array [:name, :cnpj, :address, :phone, :active, { user_ids: [] }]
+        is_expected.to match_array [
+          :name, :cnpj, :address, :phone, :active, :avatar,
+          { manager_ids: [], regular_ids: [] }
+        ]
       end
     end
 
@@ -91,7 +99,10 @@ describe CompanyPolicy, type: :policy do
       end
 
       it do
-        is_expected.to match_array [:name, :cnpj, :address, :phone, :active, { user_ids: [] }]
+        is_expected.to match_array [
+          :name, :cnpj, :address, :phone, :active, :avatar,
+          { manager_ids: [], regular_ids: [] }
+        ]
       end
     end
   end

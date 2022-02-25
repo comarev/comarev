@@ -145,6 +145,8 @@ RSpec/IdenticalEqualityAssertion:
   Enabled: true
 RSpec/ImplicitSubject:
   Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Max: 6
 RSpec/Rails/AvoidSetupHook:
   Enabled: true
 RSpec/LetSetup:

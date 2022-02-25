@@ -2,8 +2,11 @@ class Company < ApplicationRecord
   validates :name, :cnpj, presence: true
   validates :cnpj, :code, uniqueness: { case_sensitive: false }
 
+  mount_uploader :avatar, AvatarUploader
+
   has_many :company_users, dependent: :destroy
   has_many :users, through: :company_users
+  has_many :discount_requests, dependent: :destroy
 
   has_many :managers,
     -> { where(company_users: { role: :manager }) },
@@ -14,6 +17,12 @@ class Company < ApplicationRecord
     through: :company_users, source: :user
 
   before_validation :assign_code
+
+  def picture_url
+    return nil if avatar.file.nil?
+
+    avatar.url
+  end
 
   private
 

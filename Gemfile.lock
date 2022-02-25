@@ -338,6 +338,7 @@ DEPENDENCIES
   ffaker
   fog-aws
   listen (~> 3.2)
+  mini_magick
   pg
   pry-rails
   puma (~> 4.1)
