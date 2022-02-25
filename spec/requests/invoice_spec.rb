@@ -19,7 +19,7 @@ RSpec.describe Invoice, type: :request do
 
     let(:invoice_owner) { create(:user) }
 
-    context 'when successfuly' do
+    context 'when successfully' do
       let(:invoice_params) { attributes_for(:invoice, amount: 50.45, user_id: invoice_owner.id) }
 
       it 'returns the correct 201 response code' do
@@ -67,7 +67,7 @@ RSpec.describe Invoice, type: :request do
 
     let!(:invoice) { create(:invoice, amount: 50.45, paid: false) }
 
-    context 'when successfuly' do
+    context 'when successfully' do
       let(:invoice_params) { { paid: true } }
 
       it 'updates the invoice' do
@@ -95,6 +95,61 @@ RSpec.describe Invoice, type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
         expect(json).to include('Valor não pode ficar em branco')
         expect(json).to include('Valor não é um número')
+      end
+    end
+  end
+
+  describe 'POST #check' do
+    subject(:check_invoice) do
+      post check_invoices_path, params: { code: code }, headers: headers
+    end
+
+    let(:user) { create(:user) }
+    let(:company) { create(:company) }
+    let(:code) { company.code }
+
+    before { create(:company_user, user: user, company: company) }
+
+    context 'when successfully' do
+      it 'creates a DiscountRequest' do
+        expect { check_invoice }.to change(DiscountRequest, :count).by(1)
+      end
+
+      it 'returns the expected', :aggregate_failures do
+        check_invoice
+
+        expect(response).to have_http_status(:ok)
+        expect(json).to eq(serialize(company))
+      end
+    end
+
+    context 'when valid code but invoices not paid' do
+      before { create(:invoice, paid: false, user: user) }
+
+      it 'does not create a DiscountRequest' do
+        expect { check_invoice }.not_to change(DiscountRequest, :count)
+      end
+
+      it 'returns the correct', :aggregate_failures do
+        check_invoice
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.body).to be_empty
+      end
+    end
+
+    context 'when failed' do
+      let(:code) { 'invalid_code' }
+
+      it 'does not create a DiscountRequest' do
+        expect { check_invoice }.not_to change(DiscountRequest, :count)
+      end
+
+      it 'returns the correct 422 response code', :aggregate_failures do
+        check_invoice
+
+        expect(response).to have_http_status(:not_found)
+        expect(json).to eq({ message: "Couldn't find Company" })
       end
     end
   end
