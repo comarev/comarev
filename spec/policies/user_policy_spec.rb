@@ -9,6 +9,7 @@ describe UserPolicy do
     let(:user) { build_stubbed(:user) }
 
     it { is_expected.not_to authorize(:create) }
+    it { is_expected.not_to authorize(:update) }
     it { is_expected.not_to authorize(:destroy) }
     it { is_expected.not_to authorize(:index) }
   end
@@ -17,6 +18,7 @@ describe UserPolicy do
     let(:user) { build_stubbed(:user, :admin) }
 
     it { is_expected.to authorize(:create) }
+    it { is_expected.to authorize(:update) }
     it { is_expected.to authorize(:destroy) }
     it { is_expected.to authorize(:index) }
   end
