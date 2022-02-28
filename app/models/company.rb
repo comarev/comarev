@@ -1,6 +1,8 @@
 class Company < ApplicationRecord
   validates :name, :cnpj, presence: true
   validates :cnpj, :code, uniqueness: { case_sensitive: false }
+  validates :cnpj, length: { is: 14 }
+  validates :cellphone, length: { is: 14 }
 
   mount_uploader :avatar, AvatarUploader
 
