@@ -61,6 +61,14 @@ Run migrations:
 
     bundle exec rails db:migrate
 
+Run database seeds:
+  ```bash
+    # to populate with some users
+
+    bundle exec rails db:seed
+  ```
+
+
 Run the server:
 
     bundle exec rails s

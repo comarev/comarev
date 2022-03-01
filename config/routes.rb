@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :companies
-  get 'showcase', to: 'companies#showcase'
   resources :invoices, except: :destroy
+
+  resources :companies do
+    resources :discount_requests, only: :index
+  end
+
+  get 'showcase', to: 'companies#showcase'
   post 'check_invoices', to: 'invoices#check'
 end

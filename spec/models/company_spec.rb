@@ -27,6 +27,8 @@ RSpec.describe Company, type: :model do
         .through(:company_users)
         .source(:user)
     }
+
+    it { is_expected.to have_many(:discount_requests) }
   end
 
   describe 'callbacks' do
