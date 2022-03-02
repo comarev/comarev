@@ -5,7 +5,7 @@ FactoryBot.define do
     password { FFaker::Internet.password }
     address { FFaker::Address.street_name }
     cpf { FFaker::IdentificationBR.cpf }
-    cellphone { FFaker::PhoneNumberBR.mobile_phone_number }
+    cellphone { 111111111111111 }
     admin { false }
   end
 
