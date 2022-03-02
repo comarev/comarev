@@ -40,6 +40,6 @@ class ApplicationPolicy
   private
 
   def admin_or_current_user?
-    user.admin? or record.id == user.id or record.user.id == user.id
+    user.admin? or record.id == user.id
   end
 end
