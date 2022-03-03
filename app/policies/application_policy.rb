@@ -40,6 +40,10 @@ class ApplicationPolicy
   private
 
   def admin_or_current_user?
-    user.admin? or record.id == user.id
+    if record.class == Invoice
+      user.admin? or record.user.id == user.id
+    else
+      user.admin? or record.id == user.id
+    end
   end
 end
