@@ -4,7 +4,7 @@
 ![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This application is a partner management system. Basically, the Comarev admins register the interested companies that want to give a discount on their products/services to the Comarev contributors who are also registered in the system. Then, when the contributor buys something at the company (Comarev partner), they just have to scan a QR Code emitted in our dashboard and the system will return if they are ok with the payment (contribution), or not. If so, the contributor can get a discount.
@@ -145,6 +145,7 @@ If you found this project useful, then please consider leaving a :star: on Githu
     <td align="center"><a href="https://www.linkedin.com/in/brunoviveiros/"><img src="https://avatars.githubusercontent.com/u/27422266?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bruno Viveiros</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=BrunoViveiros" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/RenanRSilva"><img src="https://avatars.githubusercontent.com/u/77541655?v=4?s=100" width="100px;" alt=""/><br /><sub><b>RenanRambul</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=RenanRSilva" title="Code">💻</a></td>
     <td align="center"><a href="http://linkedin.com/in/thiago-antonello-vargas-241a77180/"><img src="https://avatars.githubusercontent.com/u/72185566?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thiago Antonello Vargas</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=thiantonello" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ivopozzani"><img src="https://avatars.githubusercontent.com/u/84991192?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ivopozzani</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=ivopozzani" title="Code">💻</a></td>
   </tr>
 </table>
 
