@@ -3,7 +3,7 @@ class DiscountRequestsController < ApplicationController
     @company = Company.find(params[:company_id])
     authorize(@company, :discount_requests?)
 
-    @discount_requests = @company.discount_requests.order(:created_at)
+    @discount_requests = @company.discount_requests.order(created_at: :desc)
 
     render json: @discount_requests
   end

@@ -19,7 +19,7 @@ RSpec.describe 'InvoicesController', type: :request do
       fetch_discount_requests
 
       expect(response).to have_http_status(:ok)
-      expect(json).to eq(serialize_all(discount_requests))
+      expect(json).to eq(serialize_all(discount_requests.sort_by(&:created_at).reverse))
     end
 
     it 'does not return other company discount requests' do
