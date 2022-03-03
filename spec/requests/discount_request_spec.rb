@@ -27,5 +27,18 @@ RSpec.describe 'InvoicesController', type: :request do
 
       expect(json).not_to include(serialize(other_discount_requests.first))
     end
+
+    context 'when company not found' do
+      subject(:fetch_discount_requests) do
+        get company_discount_requests_path(0), headers: headers
+      end
+
+      it 'returns http_status 404', :aggregate_failures do
+        fetch_discount_requests
+
+        expect(response).to have_http_status(:not_found)
+        expect(response.body).to eq({ message: "Couldn't find Company with 'id'=0" }.to_json)
+      end
+    end
   end
 end
