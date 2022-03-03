@@ -9,16 +9,20 @@ RSpec.describe InvoicePolicy, type: :policy do
     let(:user) { build_stubbed(:user) }
 
     it { is_expected.to authorize(:index) }
+    it { is_expected.not_to authorize(:show) }
     it { is_expected.not_to authorize(:create) }
     it { is_expected.not_to authorize(:update) }
+    it { is_expected.not_to authorize(:destroy) }
   end
 
   context 'when an admin user' do
     let(:user) { build_stubbed(:user, :admin) }
 
     it { is_expected.to authorize(:index) }
+    it { is_expected.to authorize(:show) }
     it { is_expected.to authorize(:create) }
     it { is_expected.to authorize(:update) }
+    it { is_expected.to authorize(:destroy) }
   end
 
   describe 'policy_scope' do

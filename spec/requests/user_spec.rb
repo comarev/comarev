@@ -235,6 +235,24 @@ RSpec.describe User, type: :request do
         expect(json).to eq(message: "Couldn't find User with 'id'=inexistent")
       end
     end
+
+    context 'when the user is not autorized' do
+      let(:user) { create(:user) }
+      let(:target_user) { create(:user) }
+      let(:user_params) { {} }
+
+      it 'returns the correct 401 response code' do
+        update_user
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+
+      it 'returns the expected response body' do
+        update_user
+
+        expect(json).to eq(message: 'Você não possui autorização!')
+      end
+    end
   end
 
   describe 'DELETE /destroy' do
