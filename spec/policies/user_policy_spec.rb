@@ -14,7 +14,7 @@ describe UserPolicy do
     it { is_expected.not_to authorize(:index) }
   end
 
-  context 'when regular user is new user' do
+  context 'when regular users trying to manage themselves' do
     let(:user) { build_stubbed(:user) }
     let(:new_user) { user }
 
@@ -41,8 +41,8 @@ describe UserPolicy do
       let(:record) { create(:user) }
 
       it do
-        is_expected.to match_array [
-          :full_name, :email, :password, :address, :cellphone, :active, :admin
+        is_expected.to match_array %i[
+          full_name email password address cellphone active admin
         ]
       end
     end
@@ -52,8 +52,8 @@ describe UserPolicy do
       let(:record) { user }
 
       it do
-        is_expected.to match_array [
-          :full_name, :email, :password, :address, :cellphone
+        is_expected.to match_array %i[
+          full_name email password address cellphone
         ]
       end
     end

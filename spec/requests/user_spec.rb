@@ -250,7 +250,7 @@ RSpec.describe User, type: :request do
       it 'returns the expected response body' do
         update_user
 
-        expect(json).to eq(message: "Você não possui autorização!")
+        expect(json).to eq(message: 'Você não possui autorização!')
       end
     end
   end
