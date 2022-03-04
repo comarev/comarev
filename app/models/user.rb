@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   validates :email, :cpf, uniqueness: true
   validates :email, :full_name, :cellphone, :address, :cpf, presence: true
+  validates :cpf, length: { is: 11 }
+  validates :cellphone, length: { is: 15 }
 
   has_many :company_users, dependent: :destroy
   has_many :companies, through: :company_users
