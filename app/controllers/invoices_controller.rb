@@ -30,8 +30,6 @@ class InvoicesController < ApplicationController
     @company = Company.find_by!(code: params[:code])
     all_paid = policy_scope(Invoice).all?(&:paid?)
 
-    @company = Company.find_by!(code: params[:code])
-
     DiscountRequest.create!(
       company: @company,
       user: current_user,
