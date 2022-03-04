@@ -28,7 +28,7 @@ class InvoicesController < ApplicationController
   def check
     authorize(Invoice)
 
-    return head :unprocessable_entity unless policy_scope(Invoice).all?(&:paid?) 
+    return head :unprocessable_entity unless policy_scope(Invoice).all?(&:paid?)
     
     @company = Company.find_by!(code: params[:code])
 
