@@ -29,7 +29,7 @@ class InvoicesController < ApplicationController
     authorize(Invoice)
 
     return head :unprocessable_entity unless policy_scope(Invoice).all?(&:paid?)
-    
+
     @company = Company.find_by!(code: params[:code])
 
     DiscountRequest.create!(
