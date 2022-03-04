@@ -25,6 +25,7 @@ regular = User.where(email: 'regular@example.com').first_or_create(
 
 company = Company.where(name: 'Company test').first_or_create(
   cnpj: FFaker::IdentificationBR.cnpj,
+  phone: FFaker::PhoneNumber.phone_number,
   active: true
 )
 

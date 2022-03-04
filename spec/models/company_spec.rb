@@ -7,6 +7,9 @@ RSpec.describe Company, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:cnpj) }
 
+    it { is_expected.to validate_length_of(:cnpj).is_equal_to(14) } # 32296887000101
+    it { is_expected.to validate_length_of(:phone).is_equal_to(14) } # +5501933074086
+
     it { is_expected.to validate_uniqueness_of(:cnpj).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
