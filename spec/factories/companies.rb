@@ -3,7 +3,7 @@ FactoryBot.define do
     name { FFaker::Name.unique.name }
     cnpj { FFaker::IdentificationBR.cnpj }
     address { FFaker::Address.street_name }
-    phone { FFaker.numerify("##############") }
+    phone { FFaker.numerify('##############') }
     active { true }
     discount { 10 }
   end
