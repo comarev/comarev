@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug report
+    about: What needs fixing?
+    url: https://github.com/comarev/comarev/issues/new?template=bug_report.md&projects=comarev/comarev/1
+  - name: Feature request
+    about: What needs building?
+    url: https://github.com/comarev/comarev/issues/new?template=feature_request.md&projects=comarev/comarev/1
+  - name: Documentation addition/change
+    about: What needs documenting?
+    url: https://github.com/comarev/comarev/issues/new?template=documentation.md&projects=comarev/comarev/1
+  - name: Chore
+    about: What needs updating or removing?
+    url: https://github.com/comarev/comarev/issues/new?template=chore.md&projects=comarev/comarev/1
