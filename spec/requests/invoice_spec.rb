@@ -126,8 +126,8 @@ RSpec.describe Invoice, type: :request do
     context 'when valid code but invoices not paid' do
       before { create(:invoice, paid: false, user: user) }
 
-      it 'does not create a DiscountRequest' do
-        expect { check_invoice }.not_to change(DiscountRequest, :count)
+      it 'creates a DiscountRequest anyway' do
+        expect { check_invoice }.to change(DiscountRequest, :count).by(1)
       end
 
       it 'returns the correct', :aggregate_failures do

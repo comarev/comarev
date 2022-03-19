@@ -1,9 +1,9 @@
 class DiscountRequestsController < ApplicationController
   def index
-    authorize(Company, :discount_requests?)
-
     @company = Company.find(params[:company_id])
-    @discount_requests = @company.discount_requests.order(:created_at)
+    authorize(@company, :discount_requests?)
+
+    @discount_requests = @company.discount_requests.order(created_at: :desc)
 
     render json: @discount_requests
   end
