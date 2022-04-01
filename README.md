@@ -77,6 +77,8 @@ Run tests:
 
     bundle exec rspec
 
+After running the server, you can also preview the emails at http://localhost:3000/rails/mailers.
+
 ### Setup with docker
 
 You will need to install [docker-compose](https://docs.docker.com/compose/install/)

@@ -8,6 +8,7 @@ class UserSerializer < ActiveModel::Serializer
     :picture_url,
     :admin,
     :active,
+    :self_registered,
     :created_at,
     :updated_at
 
