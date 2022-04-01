@@ -38,6 +38,12 @@ RSpec.describe 'Registrations', type: :request do
         it 'creates a new record in the database' do
           expect { request }.to change(User, :count).by(1)
         end
+
+        it 'sends an email to the admins', :aggregate_failures do
+          expect do
+            request
+          end.to have_enqueued_mail(AdminMailer, :user_self_registration_notification)
+        end
       end
 
       context 'with invalid params' do
@@ -48,6 +54,12 @@ RSpec.describe 'Registrations', type: :request do
 
           expect(json).to eq(errors: { full_name: ['não pode ficar em branco'] })
           expect(response).to have_http_status(:unprocessable_entity)
+        end
+
+        it 'does not send an email to the admins', :aggregate_failures do
+          expect do
+            request
+          end.not_to have_enqueued_mail(AdminMailer, :user_self_registration_notification)
         end
       end
 
@@ -73,6 +85,12 @@ RSpec.describe 'Registrations', type: :request do
 
           expect(json).to eq expected_body
           expect(response).to have_http_status(:unprocessable_entity)
+        end
+
+        it 'does not send an email to the admins', :aggregate_failures do
+          expect do
+            request
+          end.not_to have_enqueued_mail(AdminMailer, :user_self_registration_notification)
         end
       end
     end

@@ -229,3 +229,9 @@ pt-BR:
     pm: ""
   pundit:
     default: "Você não possui autorização!"
+  admin_mailer:
+    user_self_registration_notification:
+      subject: Novo usuário cadastrado - %{name}
+      heading: Um novo usuário se cadastrou no sistema.
+      body: O e-mail do novo usuário é
+      conclusion: Para que o usuário seja capaz de acessar o sistema, ele deverá ser ativado manualmente.

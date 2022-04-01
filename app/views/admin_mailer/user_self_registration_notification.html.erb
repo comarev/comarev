@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+  <p><%= t('admin_mailer.user_self_registration_notification.heading') %></p>
+
+  <p><%= t('admin_mailer.user_self_registration_notification.body') %> <strong><%= @user.email %></strong></p>
+
+  <p><%= t('admin_mailer.user_self_registration_notification.conclusion') %></p>
+</body>
+</html>
