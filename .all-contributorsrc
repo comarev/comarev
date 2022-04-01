@@ -121,6 +121,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "andreLumor",
+      "name": "André Moreira",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36737050?v=4",
+      "profile": "https://github.com/andreLumor",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }
