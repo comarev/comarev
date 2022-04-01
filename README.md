@@ -4,7 +4,7 @@
 ![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This application is a partner management system. Basically, the Comarev admins register the interested companies that want to give a discount on their products/services to the Comarev contributors who are also registered in the system. Then, when the contributor buys something at the company (Comarev partner), they just have to scan a QR Code emitted in our dashboard and the system will return if they are ok with the payment (contribution), or not. If so, the contributor can get a discount.
@@ -153,6 +153,7 @@ If you found this project useful, then please consider leaving a :star: on Githu
   <tr>
     <td align="center"><a href="https://www.linkedin.com/in/perchespierri/"><img src="https://avatars.githubusercontent.com/u/81635560?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rafael Perches Pierri</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=perchespierri" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mathewt-p"><img src="https://avatars.githubusercontent.com/u/79904624?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mathew Thomas</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=mathewt-p" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/rhian-cs"><img src="https://avatars.githubusercontent.com/u/72531802?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rhian</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=rhian-cs" title="Code">💻</a></td>
   </tr>
 </table>
 
