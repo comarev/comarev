@@ -4,7 +4,7 @@ describe User, type: :request do
   describe 'post /users/password' do
     context 'with valid email' do
       subject(:send_password_reset_email) do
-        post user_password_path, params: { user: {email: user.email}, format: :json}
+        post user_password_path, params: { user: { email: user.email }, format: :json }
       end
 
       let(:user) { create(:user) }
@@ -31,7 +31,7 @@ describe User, type: :request do
     end
     context 'with invalid email' do
       subject(:send_password_reset_email_invalid) do
-        post user_password_path, params: { user: { }, format: :json}
+        post user_password_path, params: { user: { }, format: :json }
       end
 
       before do
