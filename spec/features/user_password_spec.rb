@@ -12,7 +12,7 @@ describe User, type: :request do
       before do
         send_password_reset_email
       end
-      
+
       it 'returns the correct 200 response code' do
         expect(response).to have_http_status(:ok)
       end
@@ -22,22 +22,23 @@ describe User, type: :request do
       end
 
       it 'sends reset password instructions email' do
-        expect(ActionMailer::Base.deliveries.count(1))
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
       end
 
       it 'sends the correct email' do
         ActionMailer::Base.deliveries.first.subject.should == 'Instruções de troca de senha'
       end
     end
+
     context 'with invalid email' do
       subject(:send_password_reset_email_invalid) do
-        post user_password_path, params: { user: { }, format: :json }
+        post user_password_path, params: { user: { email: '' }, format: :json }
       end
 
       before do
         send_password_reset_email_invalid
       end
-      
+
       it 'returns the correct 200 response code' do
         expect(response).to have_http_status(:bad_request)
       end
@@ -47,7 +48,7 @@ describe User, type: :request do
       end
 
       it "Doesn't send reset password instructions email" do
-        expect(ActionMailer::Base.deliveries.count(0))
+        expect(ActionMailer::Base.deliveries.count).to eq(0)
       end
     end
   end

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :recoverable, 
-    :registerable, :jwt_authenticatable, 
+  devise :database_authenticatable, :recoverable,
+    :registerable, :jwt_authenticatable,
     jwt_revocation_strategy: JwtDenylist
 
   mount_uploader :avatar, AvatarUploader
