@@ -6,6 +6,8 @@ class Invoice < ApplicationRecord
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :due_date, presence: true
 
+  monetize :amount, as: :amount_brl
+
   scope :in_progress, -> { where(status: :in_progress) }
   scope :finished, -> { where(status: :finished) }
 end

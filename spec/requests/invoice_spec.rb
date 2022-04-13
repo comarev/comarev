@@ -20,7 +20,7 @@ RSpec.describe Invoice, type: :request do
     let(:invoice_owner) { create(:user) }
 
     context 'when successfully' do
-      let(:invoice_params) { attributes_for(:invoice, amount: 50.45, user_id: invoice_owner.id) }
+      let(:invoice_params) { attributes_for(:invoice, amount: 3_500, user_id: invoice_owner.id) }
 
       it 'returns the correct 201 response code' do
         create_invoice
@@ -35,7 +35,7 @@ RSpec.describe Invoice, type: :request do
       it 'returns the expected response body' do
         create_invoice
 
-        expect(json).to include(amount: 50.45)
+        expect(json).to include(amount: 3_500)
       end
     end
 
@@ -65,7 +65,7 @@ RSpec.describe Invoice, type: :request do
       patch invoice_path(invoice), params: { invoice: invoice_params }, headers: headers
     end
 
-    let!(:invoice) { create(:invoice, amount: 50.45, paid: false) }
+    let!(:invoice) { create(:invoice, amount: 3_500, paid: false) }
 
     context 'when successfully' do
       let(:invoice_params) { { paid: true } }

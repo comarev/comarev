@@ -8,6 +8,8 @@ RSpec.describe Invoice, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:amount) }
     it { is_expected.to validate_numericality_of(:amount).is_greater_than(0) }
+    it { is_expected.to validate_presence_of(:due_date) }
+    it { is_expected.to monetize(:amount).as(:amount_brl) }
   end
 
   describe '#status' do
