@@ -16,12 +16,12 @@ This API was built following REST pattern, then you can access all cruds this wa
 
   For `POST /companies` route you can use this payload example:
 
-  ```
-    {
-      "name": "company_name",
-      "cnpj": "12345678910111",
-      "phone": "11101987654321"
-    }
+  ```json
+  {
+    "name": "company_name",
+    "cnpj": "12345678910111",
+    "phone": "11101987654321"
+  }
   ```
 
 - Users:
@@ -35,15 +35,15 @@ This API was built following REST pattern, then you can access all cruds this wa
 
   For `POST /users` route you can use this payload example:
 
-  ```
+  ```json
   {
     "user": {
-        "full_name": "user full name",
-        "cpf": "12121212112",
-        "cellphone": "222222222222213",
-        "address": "address example",
-        "email": "test@example.com",
-        "password": "123456"
+      "full_name": "user full name",
+      "cpf": "12121212112",
+      "cellphone": "222222222222213",
+      "address": "address example",
+      "email": "test@example.com",
+      "password": "123456"
     }
   }
   ```
@@ -58,9 +58,9 @@ This API was built following REST pattern, then you can access all cruds this wa
 
   For `POST /invoices` route you can use this payload example:
 
-  ```
+  ```json
   {
-    "user_id": "1"
+    "user_id": "1",
     "amount": "50.75",
     "due_date": "2022-04-12 17:30:55.859887133 +0000"
   }
@@ -72,7 +72,7 @@ This API was built following REST pattern, then you can access all cruds this wa
 
   For `POST /signup` route you can use this payload example:
 
-  ```
+  ```json
   {
     "user": {
       "full_name": "user full name",
@@ -92,7 +92,7 @@ This API was built following REST pattern, then you can access all cruds this wa
 
   For `POST /login` route you can use this example:
 
-  ```
+  ```json
   {
     "user": {
       "admin": true,
