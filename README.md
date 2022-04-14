@@ -4,7 +4,7 @@
 ![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This application is a partner management system. Basically, the Comarev admins register the interested companies that want to give a discount on their products/services to the Comarev contributors who are also registered in the system. Then, when the contributor buys something at the company (Comarev partner), they just have to scan a QR Code emitted in our dashboard and the system will return if they are ok with the payment (contribution), or not. If so, the contributor can get a discount.
@@ -161,6 +161,9 @@ If you found this project useful, then please consider leaving a :star: on Githu
     <td align="center"><a href="http://rodrigo.vitiello.com.br"><img src="https://avatars.githubusercontent.com/u/12713965?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rodrigo Vitiello</b></sub></a><br /><a href="https://github.com/comarev/comarev/pulls?q=is%3Apr+reviewed-by%3ARodrigoVitiello" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/andreLumor"><img src="https://avatars.githubusercontent.com/u/36737050?v=4?s=100" width="100px;" alt=""/><br /><sub><b>André Moreira</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=andreLumor" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Thekote"><img src="https://avatars.githubusercontent.com/u/45775182?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Guilherme Monteiro</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=Thekote" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://codesilva.github.io"><img src="https://avatars.githubusercontent.com/u/15680379?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Edigleysson Silva</b></sub></a><br /><a href="https://github.com/comarev/comarev/pulls?q=is%3Apr+reviewed-by%3Ageeksilva97" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
