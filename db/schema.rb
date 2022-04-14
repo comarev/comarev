@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_04_12_133251) do
 
   create_table "invoices", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "amount", null: false
+    t.integer "amount_cents", null: false
     t.boolean "paid", default: false
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
