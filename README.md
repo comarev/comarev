@@ -112,6 +112,9 @@ To stop the containers run:
 
     docker-compose down
 
+## Usage
+For information concerning API usage and endpoints examples, please check the [Usage](USAGE.md) section.
+
 ## Application Concepts
 
 ### Users
