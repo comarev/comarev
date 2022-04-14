@@ -1,5 +1,5 @@
 require 'pundit/rspec'
-require "money-rails/test_helpers"
+require 'money-rails/test_helpers'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
