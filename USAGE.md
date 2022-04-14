@@ -62,7 +62,7 @@ This API was built following REST pattern, then you can access all cruds this wa
   {
     "user_id": "1",
     "amount": "50.75",
-    "due_date": "2022-04-12 17:30:55.859887133 +0000"
+    "due_date": "2022-04-12 17:30"
   }
   ```
 
