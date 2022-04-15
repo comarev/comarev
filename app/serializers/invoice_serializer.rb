@@ -1,7 +1,7 @@
 class InvoiceSerializer < ActiveModel::Serializer
   attributes :id,
     :user_id,
-    :amount,
+    :amount_cents,
     :paid,
     :status,
     :due_date,

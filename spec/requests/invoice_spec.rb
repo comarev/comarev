@@ -20,7 +20,9 @@ RSpec.describe Invoice, type: :request do
     let(:invoice_owner) { create(:user) }
 
     context 'when successfully' do
-      let(:invoice_params) { attributes_for(:invoice, amount: 50.45, user_id: invoice_owner.id) }
+      let(:invoice_params) do
+        attributes_for(:invoice, amount_cents: 3_500, user_id: invoice_owner.id)
+      end
 
       it 'returns the correct 201 response code' do
         create_invoice
@@ -35,12 +37,14 @@ RSpec.describe Invoice, type: :request do
       it 'returns the expected response body' do
         create_invoice
 
-        expect(json).to include(amount: 50.45)
+        expect(json).to include(amount_cents: 3_500)
       end
     end
 
     context 'when failed' do
-      let(:invoice_params) { attributes_for(:invoice, amount: nil, user_id: invoice_owner.id) }
+      let(:invoice_params) do
+        attributes_for(:invoice, amount_cents: nil, user_id: invoice_owner.id)
+      end
 
       it 'returns the correct 422 response code' do
         create_invoice
@@ -65,7 +69,7 @@ RSpec.describe Invoice, type: :request do
       patch invoice_path(invoice), params: { invoice: invoice_params }, headers: headers
     end
 
-    let!(:invoice) { create(:invoice, amount: 50.45, paid: false) }
+    let!(:invoice) { create(:invoice, amount_cents: 3_500, paid: false) }
 
     context 'when successfully' do
       let(:invoice_params) { { paid: true } }
@@ -83,7 +87,7 @@ RSpec.describe Invoice, type: :request do
     end
 
     context 'when failed' do
-      let(:invoice_params) { { paid: nil, amount: nil } }
+      let(:invoice_params) { { paid: nil, amount_cents: nil } }
 
       it 'does not update the invoice' do
         expect { update_invoice }.not_to(change { invoice.reload.paid })

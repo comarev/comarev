@@ -8,6 +8,6 @@ pt-BR:
       invoice:
         full_name: Nome completo
         user: Usuário
-        amount: Valor
+        amount_cents: Valor
         paid: Pago
         status: Status
