@@ -148,6 +148,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "HeitorMC",
+      "name": "Heitor de Melo ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34009891?v=4",
+      "profile": "https://github.com/HeitorMC",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }
