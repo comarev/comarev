@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   get 'showcase', to: 'companies#showcase'
   post 'check_invoices', to: 'invoices#check'
-  post 'send_employee_invitation/:id', to: 'employee_invitation#create'
+  post 'send_employee_invitation/:company_id', to: 'employee_invitation#create'
 end
