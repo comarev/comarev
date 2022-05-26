@@ -1,10 +1,18 @@
 class EmployeeInvitationService 
-  
-  def assert_listed_employee(user, company)
-    CompanyUser.where(company_id: company, user_id: user)
+  def initialize(user_id, company_id)
+    @user_id = user_id
+    @company_id = company_id
   end
 
-  def create_employee(user, company)
-    CompanyUser.create!(company_id: company, user_id: user, role: "regular")
+  def assert_listed_employee
+    CompanyUser.where(company_id: company_id, user_id: user_id).any?
   end
+
+  def create_employee!
+    CompanyUser.create!(company_id: company_id, user_id: user_id, role: 'regular')
+  end
+
+  private 
+
+  attr_reader :user_id, :company_id
 end

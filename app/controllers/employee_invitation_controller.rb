@@ -1,23 +1,37 @@
 class EmployeeInvitationController < ApplicationController
+  before_action :set_company
+  
   def create
-    email = JSON.parse(request.body.read)["email"]
-    to_invite_user = User.find_by(email: email)
+    @email = params[:email]
+    @user = User.find_by(email: @email)
 
-    if to_invite_user.present?
-      listed_employee = EmployeeInvitationService.new.assert_listed_employee(to_invite_user.id ,params[:company_id])
-      created_employee = EmployeeInvitationService.new.create_employee(to_invite_user.id, params[:company_id]) if listed_employee.blank?
+    message, status = check_or_create_company_association.slice(:message, :slice).values
 
-      return build_response({message: "this email #{email} has already been taken"}, :unprocessable_entity) if created_employee.blank?
-
-      return build_response(created_employee, :created)
-    end
-
-    return redirect_to signup_path(email: email)
+    #call mailer and send invite to user
+    
+    render json: { message: message}, status: status
   end
 
   private
 
-  def build_response(data, status)
-    render json: data, status: status
+  def check_or_create_company_association
+    return unless @user
+
+    services = EmployeeInvitationService.new(@user.id, @company.id)
+    if services.assert_listed_employee
+      { 
+        message: "User is already listed as #{@company.name}'s employee", 
+        status: :unprocessable_entity
+      } 
+    else services.create_employee!
+      { 
+        message: "User is now listed as #{@company.name}'s employee", 
+        status: :ok
+      }
+    end
+end
+
+  def set_company
+    @company = Company.find(params[:company_id]) 
   end
 end

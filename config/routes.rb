@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   resources :companies do
     resources :discount_requests, only: :index
+    post 'employee_invitation', to: 'employee_invitation#create'
   end
 
   get 'showcase', to: 'companies#showcase'
   post 'check_invoices', to: 'invoices#check'
-  post 'send_employee_invitation/:company_id', to: 'employee_invitation#create'
 end
