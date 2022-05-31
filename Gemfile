@@ -23,6 +23,8 @@ group :test do
 end
 
 group :development, :test do
+  gem "letter_opener"
+  gem 'letter_opener_web', '~> 2.0'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
