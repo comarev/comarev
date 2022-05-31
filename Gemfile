@@ -23,12 +23,12 @@ group :test do
 end
 
 group :development, :test do
-  gem "letter_opener"
-  gem 'letter_opener_web', '~> 2.0'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'ffaker'
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 2.0'
   gem 'pry-rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.0.0'
