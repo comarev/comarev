@@ -4,35 +4,10 @@ class EmployeeInvitationController < ApplicationController
   def create
     @email = params[:email]
     @user = User.find_by(email: @email)
-    message, status = check_or_create_company_association.slice(:message, :status).values
 
-    render json: { message: message }, status: status
-  end
+    check_association = EmployeeAssociationService.new.check_or_create_company_association(@user, @email, @company)
 
-  private
-
-  def check_or_create_company_association
-    if @user.nil?
-      EmployeeInvitationMailer.join_comarev_email(@email).deliver_now
-      {
-        message: 'Email sent to new user',
-        status: :ok
-      }
-    else
-      services = EmployeeInvitationService.new(@user.id, @company.id)
-      if services.assert_listed_employee
-        {
-          message: "User is already listed as #{@company.name}'s employee",
-          status: :unprocessable_entity
-        }
-      else
-        services.create_employee!
-        {
-          message: "User successfully listed as #{@company.name}'s employee",
-          status: :ok
-        }
-      end
-    end
+    render json: { message: check_association[:message] }, status: check_association[:status]
   end
 
   def set_company
