@@ -5,10 +5,15 @@ class EmployeeInvitationController < ApplicationController
     @email = params[:email]
     @user = User.find_by(email: @email)
 
-    check_association = EmployeeAssociationService.new.check_or_create_company_association(@user, @email, @company)
+    check_association = EmployeeAssociationService.new(@user,
+      @email, @company).check_or_create_company_association
 
-    render json: { message: check_association[:message] }, status: check_association[:status]
+    message, status = check_association.slice(:message, :status).values
+
+    render json: { message: message }, status: status
   end
+
+  private
 
   def set_company
     @company = Company.find(params[:company_id])
