@@ -5,8 +5,8 @@ class EmployeeInvitationController < ApplicationController
     @email = params[:email]
     @user = User.find_by(email: @email)
 
-    check_association = EmployeeAssociationService.new(@user,
-      @email, @company).check_or_create_company_association
+    check_association = CheckEmployeeAssociation.call(@user,
+      @email, @company)
 
     message, status = check_association.slice(:message, :status).values
 
