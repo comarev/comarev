@@ -19,7 +19,10 @@ RSpec.describe CheckEmployeeAssociation, type: :service do
       describe 'and is not listed as a company employee' do
         let(:args) { [user, user.email, company] }
 
-        it { is_expected.to eq({ message: "User successfully listed as #{company.name}'s employee", status: :ok }) }
+        it {
+          is_expected.to eq({ message: "User successfully listed as #{company.name}'s employee",
+          status: :ok })
+        }
       end
 
       describe 'and is already listed as a company employee' do
@@ -29,7 +32,10 @@ RSpec.describe CheckEmployeeAssociation, type: :service do
           create(:company_user, user: user, company: company)
         end
 
-        it { is_expected.to eq({ message: "User is already listed as #{company.name}'s employee", status: :unprocessable_entity }) }
+        it {
+          is_expected.to eq({ message: "User is already listed as #{company.name}'s employee",
+          status: :unprocessable_entity })
+        }
       end
     end
   end

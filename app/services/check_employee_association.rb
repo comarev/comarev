@@ -21,10 +21,10 @@ class CheckEmployeeAssociation < ApplicationService
   attr_reader :user, :email, :company
 
   def send_invite_to_email
-    EmployeeInvitationMailer.invite_employee(email: email).deliver_now && 
+    EmployeeInvitationMailer.invite_employee(email: email).deliver_now &&
       build_response('Email sent to new user', :ok)
   end
-  
+
   def listed_employee_for_company?
     CompanyUser.where(user_id: user.id, company_id: company.id).any?
   end
