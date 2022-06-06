@@ -9,8 +9,8 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
   describe 'POST /companies/:company_id/employee_invitations' do
     context 'when the user is not registered on Comarev' do
       subject(:invitation_controller) do
-        post company_employee_invitation_path(company), 
-        params: { email: 'test_email@test.com' }, headers: headers
+        post company_employee_invitation_path(company),
+          params: { email: 'test_email@test.com' }, headers: headers
       end
 
       it 'returns status ok' do

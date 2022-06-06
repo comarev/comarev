@@ -6,7 +6,7 @@ class EmployeeInvitationController < ApplicationController
     @user = User.find_by(email: @email)
 
     message, status = CheckEmployeeAssociation.call(@user, @email, @company)
-    .slice(:message, :status).values
+      .slice(:message, :status).values
 
     render json: { message: message }, status: status
   end
