@@ -7,20 +7,20 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
   let(:headers) { { Authorization: sign_in(user) } }
 
   describe 'POST /companies/:company_id/employee_invitations' do
-    context 'when user is no registered on Comarev' do
+    context 'when the user is not registered on Comarev' do
       subject(:invitation_controller) do
-        post company_employee_invitation_path(company), params: { email: 'test_email@test.com' },
-          headers: headers
+        post company_employee_invitation_path(company), 
+        params: { email: 'test_email@test.com' }, headers: headers
       end
 
-      it 'Returns status ok' do
+      it 'returns status ok' do
         invitation_controller
 
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context 'when user already is listed on a Company' do
+    context 'when the user is already listed on a Company' do
       subject(:invitation_controller) do
         post company_employee_invitation_path(company), params: { email: user.email },
           headers: headers
@@ -30,20 +30,20 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
         create(:company_user, user: user, company: company)
       end
 
-      it 'Returns status unprocessable entity' do
+      it 'returns status unprocessable entity' do
         invitation_controller
 
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
-    context 'when user is not listed on a Company' do
+    context 'when the user is not listed on a Company' do
       subject(:invitation_controller) do
         post company_employee_invitation_path(company), params: { email: not_listed_user.email },
           headers: headers
       end
 
-      it 'Returns status ok' do
+      it 'returns status ok' do
         invitation_controller
 
         expect(response).to have_http_status(:ok)
