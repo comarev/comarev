@@ -15,7 +15,7 @@ RSpec.describe EmployeeInvitationMailer, type: :mailer do
 
     it 'renders the new user message' do
       expect(email.body.encoded).to match('You have been invited to join a company')
-      expect(email.body.encoded).to match('In order to accept, you must be loged in first.')
+      expect(email.body.encoded).to match('In order to accept, you must be logged in first.')
     end
   end
 end

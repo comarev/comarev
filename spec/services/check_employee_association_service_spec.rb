@@ -5,18 +5,16 @@ RSpec.describe CheckEmployeeAssociation, type: :service do
   let(:company) { create(:company) }
 
   describe '.call' do
-    subject(:check_association) do
-      described_class.call(*args)
-    end
+    subject(:check_association) { described_class.call(*args) }
 
-    context 'when the user not registered on Comarev yet' do
+    context 'when the user not registered on comarev yet' do
       let(:args) { [nil, 'not_registered_email', company] }
 
       it { is_expected.to eq({ message: 'Email sent to new user', status: :ok }) }
     end
 
-    context 'when the user already exists on Comarev' do
-      describe 'and is not listed as a company employee' do
+    context 'when the user already exists on comarev' do
+      context 'and is not listed as a company employee' do
         let(:args) { [user, user.email, company] }
 
         it {
@@ -25,12 +23,10 @@ RSpec.describe CheckEmployeeAssociation, type: :service do
         }
       end
 
-      describe 'and is already listed as a company employee' do
+      context 'and is already listed as a company employee' do
         let(:args) { [user, user.email, company] }
 
-        before do
-          create(:company_user, user: user, company: company)
-        end
+        before { create(:company_user, user: user, company: company) }
 
         it {
           is_expected.to eq({ message: "User is already listed as #{company.name}'s employee",
