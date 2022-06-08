@@ -15,11 +15,15 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
     context 'when the user is not registered on comarev' do
       let(:current_email) { 'test_test@email.com' }
 
+      before do
+        allow(CheckEmployeeAssociation).to receive(:call).and_return({message:'Email sent to new user', status: :ok})
+      end
+
       it "returns status ok with 'email sent to new user' message" do
         invitation_controller
 
         expect(response).to have_http_status(:ok)
-        expect(json).to eq({ message: 'Email sent to new user' })
+        expect(response.body).to eq({ message: 'Email sent to new user' }.to_json)
       end
     end
 
@@ -28,18 +32,24 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
 
       before do
         create(:company_user, user: user, company: company)
+        allow(CheckEmployeeAssociation).to receive(:call).and_return({message:"User is already listed as #{company.name}'s employee",
+          status: :unprocessable_entity})
       end
 
       it "returns status unprocessable entity with 'already listed' message" do
         invitation_controller
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json).to eq({ message: "User is already listed as #{company.name}'s employee" }
+        expect(response.body).to eq({ message: "User is already listed as #{company.name}'s employee" }.to_json)
       end
     end
 
     context 'when the user is not listed on a company' do
       let(:current_email) { not_listed_user.email }
+
+      before do
+        allow(CheckEmployeeAssociation).to receive(:call).and_return({ message: "User successfully listed as #{company.name}'s employee" })
+      end
 
       it "returns status ok with user 'successfully listed' message" do
         invitation_controller

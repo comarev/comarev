@@ -10,12 +10,9 @@ RSpec.describe EmployeeInvitationMailer, type: :mailer do
       expect(email.subject).to eq('Comarev - Invitation to join in')
       expect(email.to).to eq(['test@email.com'])
       expect(email.from).to eq(['test@test.com'])
-      expect { email.deliver_now }.to change { described_class.deliveries.count }.by(1)
-    end
-
-    it 'renders the new user message' do
       expect(email.body.encoded).to match('You have been invited to join a company')
       expect(email.body.encoded).to match('In order to accept, you must be logged in first.')
+      expect { email.deliver_now }.to change { described_class.deliveries.count }.by(1)
     end
   end
 end
