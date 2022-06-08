@@ -3,8 +3,7 @@ class EmployeeInvitationMailer < ApplicationMailer
 
   def invite_employee
     @email = params[:email]
-
-    mail(to: @email,
-      subject: 'Comarev - Invitation to join in')
+    @company = params[:company]
+    mail(to: @email, subject: 'Comarev - Invitation to join in')
   end
 end
