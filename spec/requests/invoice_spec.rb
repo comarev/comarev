@@ -134,6 +134,12 @@ RSpec.describe Invoice, type: :request do
         expect { check_invoice }.to change(DiscountRequest, :count).by(1)
       end
 
+      it 'creates a DiscountRequest with received_discount = 0' do
+        check_invoice
+
+        expect(DiscountRequest.last.received_discount).to eq(0)
+      end
+
       it 'returns the correct', :aggregate_failures do
         check_invoice
 

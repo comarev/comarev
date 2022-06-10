@@ -29,11 +29,12 @@ class InvoicesController < ApplicationController
     authorize(Invoice)
     @company = Company.find_by!(code: params[:code])
     all_paid = policy_scope(Invoice).all?(&:paid?)
+    discount = 0 unless all_paid
 
     DiscountRequest.create!(
       company: @company,
       user: current_user,
-      received_discount: @company.discount,
+      received_discount: discount || @company.discount,
       allowed: all_paid
     )
 
