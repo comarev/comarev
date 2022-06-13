@@ -52,6 +52,8 @@ Lint/EmptyClass:
   Enabled: true
 Lint/LambdaWithoutLiteralBlock:
   Enabled: true
+Lint/MissingSuper:
+  Enabled: false
 Lint/NoReturnInBeginEndBlocks:
   Enabled: true
 Lint/NumberedParameterAssignment:
