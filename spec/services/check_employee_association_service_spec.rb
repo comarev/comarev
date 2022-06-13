@@ -14,23 +14,23 @@ RSpec.describe CheckEmployeeAssociation, type: :service do
     end
 
     context 'when the user already exists on comarev' do
-      context 'and is not listed as a company employee' do
+      context 'when the user is not listed as a company employee' do
         let(:args) { [user, user.email, company] }
 
         it do
           is_expected.to eq({ message: "User successfully listed as #{company.name}'s employee",
-            status: :ok })
+                              status: :ok })
         end
       end
 
-      context 'and is already listed as a company employee' do
+      context 'when the user is already listed as a company employee' do
         let(:args) { [user, user.email, company] }
 
         before { create(:company_user, user: user, company: company) }
 
         it do
           is_expected.to eq({ message: "User is already listed as #{company.name}'s employee",
-            status: :unprocessable_entity })
+                              status: :unprocessable_entity })
         end
       end
     end

@@ -24,8 +24,7 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
         invitation_controller
 
         expect(response).to have_http_status(:ok)
-        expect(response.body).to eq({ message: 'Email sent to new user' }
-          .to_json)
+        expect(response.body).to eq({ message: 'Email sent to new user' }.to_json)
       end
     end
 
@@ -35,16 +34,17 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
       before do
         create(:company_user, user: user, company: company)
         allow(CheckEmployeeAssociation).to receive(:call)
-          .and_return({ message: "User is already listed as #{company.name}'s employee",
-            status: :unprocessable_entity })
+          .and_return({ message: "User is already listed
+            as #{company.name}'s employee",
+                        status: :unprocessable_entity })
       end
 
       it "returns status unprocessable entity with 'already listed' message" do
         invitation_controller
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.body).to eq({ message:
-          "User is already listed as #{company.name}'s employee" }.to_json)
+        expect(response.body).to eq({ message: "User is already listed
+            as #{company.name}'s employee" }.to_json)
       end
     end
 
@@ -53,16 +53,16 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
 
       before do
         allow(CheckEmployeeAssociation).to receive(:call)
-          .and_return({ message:
-            "User successfully listed as #{company.name}'s employee" })
+          .and_return({ message: "User successfully listed
+            as #{company.name}'s employee" })
       end
 
       it "returns status ok with user 'successfully listed' message" do
         invitation_controller
 
         expect(response).to have_http_status(:ok)
-        expect(response.body).to eq({ message:
-          "User successfully listed as #{company.name}'s employee" }.to_json)
+        expect(response.body).to eq({ message: "User successfully listed
+            as #{company.name}'s employee" }.to_json)
       end
     end
 
