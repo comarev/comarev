@@ -3,9 +3,9 @@ class EmployeeInvitationController < ApplicationController
 
   def create
     @email = params[:email]
-    @user = User.find_by(email: @email)
+    @user = current_user
 
-    message, status = CheckEmployeeAssociation.call(@user, @email, @company)
+    message, status = InviteEmployeeService.call(@user, @email, @company)
       .slice(:message, :status).values
 
     render json: { message: message }, status: status
