@@ -11,6 +11,23 @@ class EmployeeInvitationController < ApplicationController
     render json: { message: message }, status: status
   end
 
+  def update
+    @token = params[:token]
+    @accepted = params[:accepted]
+
+    if invite = Invite.available.find_by(invitation_token: @token)
+      if @accepted
+        invite.accept
+        render json: { message: 'Invite accepted' }, status: :ok
+      else
+        invite.refuse
+        render json: { message: 'Invite refused' }, status: :ok
+      end
+    else
+      render json: { message: 'Invite could not be found' }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_company

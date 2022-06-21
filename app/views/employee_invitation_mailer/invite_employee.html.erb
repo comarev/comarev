@@ -8,7 +8,10 @@
       Hello. <br> You have been invited to join the company: <%=@company.name%> as an employee, in Comarev.
     </p>
     <p>
-      In order to accept, you must be logged in first.
+      <%= link_to "Click Here", "www.comarev.com/signin?token=#{@token}" %> to accept the invitation.
+    </p>
+    <p>
+      If you don't wanna join this company, Click Here to refuse.
     </p>
   </body>
 </html>
