@@ -15,7 +15,7 @@ class EmployeeInvitationController < ApplicationController
     @token = params[:token]
     @accepted = params[:accepted]
 
-    if invite = Invite.available.find_by(invitation_token: @token)
+    if (invite = Invite.available.find_by(invitation_token: @token))
       if @accepted
         invite.accept
         render json: { message: 'Invite accepted' }, status: :ok

@@ -1,5 +1,5 @@
 class Invite < ApplicationRecord
-  belongs_to :inviter, class_name: "User"
+  belongs_to :inviter, class_name: 'User'
   belongs_to :company
   has_secure_token :invitation_token
 
@@ -12,13 +12,13 @@ class Invite < ApplicationRecord
   scope :recently_refused, -> { refused.where('replied_at > ?', 10.minutes.ago) }
 
   def refuse
-    self.update_columns(replied_at: Time.current, accepted: false)
+    update(replied_at: Time.current, accepted: false)
   end
 
   def accept
-    if invited_user = User.find_by(email: invited_email)
-      CompanyUser.create(user_id: invited_user.id, company_id: company.id, role: 'regular')
-      self.update_columns(replied_at: Time.current, accepted: true)
-    end
+    return false unless (invited_user = User.find_by(email: invited_email))
+    
+    CompanyUser.create(user_id: invited_user.id, company_id: company.id, role: 'regular')
+    update(replied_at: Time.current, accepted: true)
   end
 end

@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2022_06_15_150547) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_invites_on_company_id"
+    t.index ["invitation_token"], name: "index_invites_on_invitation_token", unique: true
     t.index ["inviter_id"], name: "index_invites_on_inviter_id"
   end
 

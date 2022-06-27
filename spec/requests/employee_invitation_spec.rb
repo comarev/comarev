@@ -16,7 +16,7 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
       let(:current_email) { 'test_test@email.com' }
 
       before do
-        allow(CheckEmployeeAssociation).to receive(:call)
+        allow(InviteEmployeeService).to receive(:call)
           .and_return({ message: 'Email sent to new user', status: :ok })
       end
 
@@ -33,7 +33,7 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
 
       before do
         create(:company_user, user: user, company: company)
-        allow(CheckEmployeeAssociation).to receive(:call)
+        allow(InviteEmployeeService).to receive(:call)
           .and_return({ message: "User is already listed
             as #{company.name}'s employee",
                         status: :unprocessable_entity })
@@ -52,7 +52,7 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
       let(:current_email) { not_listed_user.email }
 
       before do
-        allow(CheckEmployeeAssociation).to receive(:call)
+        allow(InviteEmployeeService).to receive(:call)
           .and_return({ message: "User successfully listed
             as #{company.name}'s employee" })
       end
@@ -70,14 +70,14 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
       let(:current_email) { user.email }
 
       before do
-        allow(CheckEmployeeAssociation).to receive(:call).with(user, user.email,
+        allow(InviteEmployeeService).to receive(:call).with(user, user.email,
           company).and_return({ message: 'mocked service message', status: :ok })
       end
 
       it 'calls the service object' do
         invitation_controller
 
-        expect(CheckEmployeeAssociation).to have_received(:call)
+        expect(InviteEmployeeService).to have_received(:call)
           .with(user, current_email, company).once
         expect(response.body).to eq({ message: 'mocked service message' }.to_json)
       end
