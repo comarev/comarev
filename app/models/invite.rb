@@ -17,7 +17,7 @@ class Invite < ApplicationRecord
 
   def accept
     return false unless (invited_user = User.find_by(email: invited_email))
-
+    
     CompanyUser.create(user_id: invited_user.id, company_id: company.id, role: 'regular')
     update(replied_at: Time.current, accepted: true)
   end

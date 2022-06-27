@@ -22,9 +22,9 @@ class InviteEmployeeService < ApplicationService
   attr_reader :inviter, :email, :company
 
   def send_invitation_email
-    if (invitation = Invite.create!(inviter_id: inviter.id,
+    if (invitation = Invite.create!(inviter: inviter,
       invited_email: email,
-      company_id: company.id))
+      company: company))
       EmployeeInvitationMailer.with(token: invitation.invitation_token,
         email: email,
         company: company)
