@@ -14,7 +14,6 @@ RSpec.describe InviteEmployeeService, type: :service do
       it { is_expected.to eq({ message: 'Invitation sent', status: :ok }) }
     end
 
-
     context "when the user is already listed as this company's employee" do
       let(:args) { [inviter, employee.email, company] }
 
@@ -31,15 +30,22 @@ RSpec.describe InviteEmployeeService, type: :service do
 
       before { Invite.create!(inviter: inviter, invited_email: employee.email, company: company) }
 
-      it { is_expected.to eq({ message: "User was already invited to #{company.name}", status: :unprocessable_entity }) }
+      it {
+        is_expected.to eq({ message: "User was already invited to #{company.name}",
+       status: :unprocessable_entity })
+      }
     end
 
     context 'when the user recently refused this invite' do
       let(:args) { [inviter, employee.email, company] }
 
-      before { Invite.create!(inviter: inviter, invited_email: employee.email, company: company).refuse }
+      before do
+        Invite.create!(inviter: inviter, invited_email: employee.email, company: company).refuse
+      end
 
-      it { is_expected.to eq({ message: 'Invite recently refused', status: :unprocessable_entity }) }
+      it {
+        is_expected.to eq({ message: 'Invite recently refused', status: :unprocessable_entity })
+      }
     end
   end
 end

@@ -7,7 +7,7 @@ RSpec.describe Invite, type: :model do
   end
 
   describe 'has_secure_token' do
-    it { should have_secure_token(:invitation_token) }  
+    it { is_expected.to have_secure_token(:invitation_token) }
   end
 
   describe 'validations' do
@@ -58,26 +58,27 @@ RSpec.describe Invite, type: :model do
 
   describe '.accept' do
     subject(:accept_invite) { invite.accept }
-    
+
     context 'when the invited email was not registered' do
       let!(:invite) { create(:invite) }
+
       it { is_expected.to eq(false) }
-      
+
       it 'does not invalidate the invite' do
         accept_invite
         expect(described_class.available).to include(invite)
       end
 
-      it 'updates the invite' do
+      it 'does not update the invite' do
         accept_invite
-        expect(invite.accepted).to be_truthy
+        expect(invite.accepted).to be(nil)
       end
     end
 
     context 'when the invited email was registered' do
-      let!(:invite) { create(:invite) }
-      let!(:employee) { create(:user, email: invite.invited_email) }
-      
+      let(:employee) { create(:user) }
+      let!(:invite) { create(:invite, invited_email: employee.email) }
+
       it 'invalidates the invite' do
         accept_invite
         expect(described_class.available).not_to include(invite)
@@ -91,8 +92,9 @@ RSpec.describe Invite, type: :model do
 
   describe '.refuse' do
     subject(:refuse_invite) { invite.refuse }
+
     let!(:invite) { create(:invite) }
-    
+
     it 'invalidates the invite' do
       refuse_invite
       expect(described_class.available).not_to include(invite)

@@ -7,7 +7,7 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
   let(:headers) { { Authorization: sign_in(user) } }
 
   describe 'POST /companies/:company_id/employee_invitations' do
-    subject(:invitation_controller) do
+    subject(:create_invitation) do
       post company_employee_invitation_path(company),
         params: { email: current_email }, headers: headers
     end
@@ -21,7 +21,7 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
       end
 
       it "returns status ok with 'email sent to new user' message" do
-        invitation_controller
+        create_invitation
 
         expect(response).to have_http_status(:ok)
         expect(response.body).to eq({ message: 'Email sent to new user' }.to_json)
@@ -40,7 +40,7 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
       end
 
       it "returns status unprocessable entity with 'already listed' message" do
-        invitation_controller
+        create_invitation
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.body).to eq({ message: "User is already listed
@@ -58,7 +58,7 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
       end
 
       it "returns status ok with user 'successfully listed' message" do
-        invitation_controller
+        create_invitation
 
         expect(response).to have_http_status(:ok)
         expect(response.body).to eq({ message: "User successfully listed
@@ -75,11 +75,92 @@ RSpec.describe 'EmployeeInvitationController', type: :request do
       end
 
       it 'calls the service object' do
-        invitation_controller
+        create_invitation
 
         expect(InviteEmployeeService).to have_received(:call)
           .with(user, current_email, company).once
         expect(response.body).to eq({ message: 'mocked service message' }.to_json)
+      end
+    end
+  end
+
+  describe 'PATCH /companies/:company_id/employee_invitations' do
+    subject(:reply_invitation) do
+      patch company_employee_invitation_path(company),
+        params: { accepted: accepted_params, token: invite.invitation_token },
+        headers: headers, as: :json
+    end
+
+    context 'when the accepted parameter is true' do
+      let(:accepted_params) { true }
+
+      context 'when the invite does not exist on database' do
+        let(:invite) { build(:invite) }
+
+        it "returns status unprocessable entity with 'invite could not replied' message" do
+          reply_invitation
+
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response.body).to eq({ message: 'invite could not replied' }.to_json)
+        end
+      end
+
+      context 'when employee was registered' do
+        let(:employee) { create(:user) }
+        let(:invite) { create(:invite, invited_email: employee.email) }
+
+        it "returns status ok with 'Invite accepted' message" do
+          reply_invitation
+
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to eq({ message: 'invite accepted' }.to_json)
+        end
+      end
+
+      context 'when employee was not registered' do
+        let(:invite) { create(:invite) }
+
+        it "returns status unprocessable entity with 'invite could not replied' message" do
+          reply_invitation
+
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response.body).to eq({ message: 'invite could not replied' }.to_json)
+        end
+      end
+
+      context 'when the invite is expired' do
+        let(:invite) { create(:invite, updated_at: 31.days.ago) }
+
+        it "returns status unprocessable entity with 'invite could not replied' message" do
+          reply_invitation
+
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response.body).to eq({ message: 'invite could not replied' }.to_json)
+        end
+      end
+
+      context 'when the invite was already replied' do
+        let(:invite) { create(:invite, replied_at: Time.current) }
+
+        it "returns status unprocessable entity with 'invite could not replied' message" do
+          reply_invitation
+
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response.body).to eq({ message: 'invite could not replied' }.to_json)
+        end
+      end
+    end
+
+    context 'when the accepted parameter is false' do
+      let(:accepted_params) { false }
+      let(:employee) { create(:user) }
+      let(:invite) { create(:invite, invited_email: employee.email) }
+
+      it "returns status ok with 'invite refused' message" do
+        reply_invitation
+
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to eq({ message: 'invite refused' }.to_json)
       end
     end
   end
