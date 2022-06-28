@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :companies do
     resources :discount_requests, only: :index
     post 'employee_invitation', to: 'employee_invitation#create'
+    patch 'employee_invitation', to: 'employee_invitation#update'
   end
 
   get 'showcase', to: 'companies#showcase'
