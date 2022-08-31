@@ -4,7 +4,7 @@
 ![rubocop workflow](https://github.com/belgamo/comarev/actions/workflows/rubocop.yml/badge.svg)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This application is a partner management system. Basically, the Comarev admins register the interested companies that want to give a discount on their products/services to the Comarev contributors who are also registered in the system. Then, when the contributor buys something at the company (Comarev partner), they just have to scan a QR Code emitted in our dashboard and the system will return if they are ok with the payment (contribution), or not. If so, the contributor can get a discount.
@@ -166,6 +166,7 @@ If you found this project useful, then please consider leaving a :star: on Githu
     <td align="center"><a href="https://codesilva.github.io"><img src="https://avatars.githubusercontent.com/u/15680379?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Edigleysson Silva</b></sub></a><br /><a href="https://github.com/comarev/comarev/pulls?q=is%3Apr+reviewed-by%3Ageeksilva97" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/HeitorMC"><img src="https://avatars.githubusercontent.com/u/34009891?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Heitor de Melo </b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=HeitorMC" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/antonio-simei/"><img src="https://avatars.githubusercontent.com/u/79973491?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antônio Simei</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=aq-simei" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/eric-poloni-ara%C3%BAjo-7aa466182/"><img src="https://avatars.githubusercontent.com/u/103846371?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Eric Poloni Araujo</b></sub></a><br /><a href="https://github.com/comarev/comarev/commits?author=ericaraujo13" title="Code">💻</a> <a href="https://github.com/comarev/comarev/pulls?q=is%3Apr+reviewed-by%3Aericaraujo13" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
