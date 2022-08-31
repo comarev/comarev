@@ -373,7 +373,6 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.5)
   rails-controller-testing
-  redis
   rspec-rails (~> 5.0.0)
   rubocop
   rubocop-rails
