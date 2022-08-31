@@ -1,10 +1,9 @@
-require 'sidekiq'
 require 'sidekiq/web'
 
-Sidekiq.configure_server do |config|
-  config.redis = { url: 'redis://localhost:6379/0' }
-end
+Sidekiq::Web.use ActionDispatch::Cookies
+Sidekiq::Web.use ActionDispatch::Session::CookieStore, key: "_interslice_session"
 
-Sidekiq.configure_client do |config|
-  config.redis = { url: 'redis://localhost:6379/0' }
+Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
+  [user, password] == [ENV.fetch('SIDEKIQ_USER', 'admin'),
+                       ENV.fetch('SIDEKIQ_PASSWORD', 'secret')]
 end

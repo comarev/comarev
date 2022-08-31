@@ -1,8 +1,5 @@
 require 'sidekiq/web'
 
-Sidekiq::Web.use ActionDispatch::Cookies
-Sidekiq::Web.use ActionDispatch::Session::CookieStore, key: "_interslice_session"
-
 Rails.application.routes.draw do
   devise_for :users, skip: [:sessions, :registrations], controllers: { passwords: 'passwords' }
   mount Sidekiq::Web => '/sidekiq'
