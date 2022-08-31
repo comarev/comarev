@@ -166,6 +166,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ericaraujo13",
+      "name": "Eric Poloni Araujo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103846371?v=4",
+      "profile": "https://www.linkedin.com/in/eric-poloni-ara%C3%BAjo-7aa466182/",
+      "contributions": [
+        "code",
+        "review"
+      ]
     }
   ]
 }
