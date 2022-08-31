@@ -35,5 +35,6 @@ module Comarev
     config.api_only = true
     config.i18n.default_locale = 'pt-BR'
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{yml}')]
+    config.active_job.queue_adapter = :sidekiq
   end
 end

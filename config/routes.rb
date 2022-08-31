@@ -1,5 +1,11 @@
+require 'sidekiq/web'
+
+Sidekiq::Web.use ActionDispatch::Cookies
+Sidekiq::Web.use ActionDispatch::Session::CookieStore, key: "_interslice_session"
+
 Rails.application.routes.draw do
   devise_for :users, skip: [:sessions, :registrations], controllers: { passwords: 'passwords' }
+  mount Sidekiq::Web => '/sidekiq'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   as :user do
     post 'signup', to: 'registrations#create'
