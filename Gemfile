@@ -18,7 +18,6 @@ gem 'pundit'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 gem 'sidekiq'
-gem 'redis'
 
 group :test do
   gem 'simplecov'
