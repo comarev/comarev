@@ -176,6 +176,15 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "ronaldoaraujo",
+      "name": "Ronaldo de Sousa Araujo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1054772?v=4",
+      "profile": "https://github.com/ronaldoaraujo",
+      "contributions": [
+        "review"
+      ]
     }
   ]
 }
