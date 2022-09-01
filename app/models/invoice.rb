@@ -10,4 +10,6 @@ class Invoice < ApplicationRecord
 
   scope :in_progress, -> { where(status: :in_progress) }
   scope :finished, -> { where(status: :finished) }
+
+  scope :expires_in_5_days, -> { where("due_date < ?", 5.days.from_now) }
 end
