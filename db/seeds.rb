@@ -1,34 +1,8 @@
-admin = User.where(email: 'admin@example.com').first_or_create(
-  password: '123456',
-  full_name: 'Admin test',
-  cpf: FFaker::IdentificationBR.cpf,
-  cellphone: FFaker.numerify('#' * 15),
-  address: FFaker::Address.street_address,
-  admin: true
-)
+Dir[Rails.root.join('db/seeds/*.rb')].sort.each do |file|
+  filename = file.split('/').last
+  modelname = filename.split('_').last.delete_suffix('.rb')
 
-manager = User.where(email: 'manager@example.com').first_or_create(
-  password: '123456',
-  full_name: 'Manager test',
-  cpf: FFaker::IdentificationBR.cpf,
-  cellphone: FFaker.numerify('#' * 15),
-  address: FFaker::Address.street_address
-)
-
-regular = User.where(email: 'regular@example.com').first_or_create(
-  password: '123456',
-  full_name: 'Regular test',
-  cpf: FFaker::IdentificationBR.cpf,
-  cellphone: FFaker.numerify('#' * 15),
-  address: FFaker::Address.street_address
-)
-
-company = Company.where(name: 'Company test').first_or_create(
-  cnpj: FFaker::IdentificationBR.cnpj,
-  phone: FFaker.numerify('#' * 14),
-  discount: FFaker.rand(10),
-  active: true
-)
-
-company.managers << manager
-company.regulars << regular
+  puts "Processing #{modelname} seed..."
+  require file
+  puts "done ✓"
+end
