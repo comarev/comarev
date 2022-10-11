@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Comarev - API docs</title>
+    <link rel="shortcut icon" href="/favicon.png">
+    <%= stylesheet_link_tag "swagger", media: "all" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= yield %>
+    <%= javascript_include_tag "swagger" %>
+  </body>
+</html>

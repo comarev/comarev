@@ -36,3 +36,4 @@
 /coverage
 /config/database.yml
 .prettierrc
+node_modules
