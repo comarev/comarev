@@ -7,6 +7,7 @@ gem 'active_model_serializers', '~> 0.10.6'
 gem 'aws-sdk-s3', '~> 1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'carrierwave', '~> 2.0'
+gem 'coffee-rails'
 gem 'devise'
 gem 'devise-jwt'
 gem 'fog-aws'
@@ -17,7 +18,9 @@ gem 'puma', '~> 4.1'
 gem 'pundit'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
+gem 'sass-rails'
 gem 'sidekiq'
+gem 'uglifier'
 
 group :test do
   gem 'simplecov'
