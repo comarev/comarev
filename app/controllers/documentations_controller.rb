@@ -1,3 +1,4 @@
+# rubocop:disable Rails/ApplicationController
 class DocumentationsController < ActionController::Base
   layout 'swagger'
 
@@ -11,3 +12,4 @@ class DocumentationsController < ActionController::Base
     render json: @config
   end
 end
+# rubocop:enable Rails/ApplicationController
