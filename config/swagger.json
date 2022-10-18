@@ -6,7 +6,7 @@
     "title": "Comarev - API",
     "termsOfService": "",
     "contact": {
-      "email": "comarev@hotmail.com"
+      "email": "comarev.dev@hotmail.com"
     },
     "license": {
       "name": "Apache 2.0",
@@ -17,10 +17,51 @@
     "description": "Find out more about Comarev",
     "url": "http://comarev.com.br/"
   },
-  "host": "localhost",
+  "host": "localhost:3000",
   "basePath": "/",
-  "tags": [],
+  "tags": [
+    {
+      "name": "Company",
+      "description": "Operations about company and discount requests"
+    }
+  ],
   "schemes": ["https", "http"],
-  "paths": {},
+  "paths": {
+    "/companies/{company_id}/discount_requests": {
+      "get": {
+        "tags": ["Company"],
+        "summary": "List all discounts given by a company",
+        "operationId": "listDiscountRequests",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Participant bearer token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "company_id",
+            "in": "path",
+            "description": "company id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "invalid access token"
+          },
+          "404": {
+            "description": "company not found"
+          }
+        }
+      }
+    }
+  },
   "definitions": {}
 }
