@@ -3,11 +3,11 @@ name: Rubocop
 on:
   push:
     branches:
-      - master
+      - main
       - staging
   pull_request:
     branches:
-      - master
+      - main
       - staging
 
 jobs:
@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.4
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7.0
-        bundler-cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.0
+          bundler-cache: true
 
-    - name: linter
-      run: bundle exec rubocop
+      - name: linter
+        run: bundle exec rubocop

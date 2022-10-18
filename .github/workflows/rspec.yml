@@ -3,11 +3,11 @@ name: RSpec
 on:
   push:
     branches:
-      - master
+      - main
       - staging
   pull_request:
     branches:
-      - master
+      - main
       - staging
 
 jobs:
