@@ -23,6 +23,10 @@
     {
       "name": "Company",
       "description": "Operations about company and discount requests"
+    },
+    {
+      "name": "Sign in",
+      "description": "Operation about sign in with all user roles"
     }
   ],
   "schemes": ["https", "http"],
@@ -58,6 +62,38 @@
           },
           "404": {
             "description": "company not found"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Sign in"],
+        "summary": "Given the email and password, returns a JWT of the signed user",
+        "operationId": "signIn",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "user[email]",
+            "in": "formData",
+            "description": "Participant's email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user[password]",
+            "in": "formData",
+            "description": "Participant's password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "invalid email or password"
           }
         }
       }
