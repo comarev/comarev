@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_12_133251) do
+ActiveRecord::Schema.define(version: 2022_06_15_150547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,20 @@ ActiveRecord::Schema.define(version: 2022_04_12_133251) do
     t.index ["user_id"], name: "index_discount_requests_on_user_id"
   end
 
+  create_table "invites", force: :cascade do |t|
+    t.bigint "inviter_id", null: false
+    t.bigint "company_id", null: false
+    t.string "invitation_token", null: false
+    t.string "invited_email", null: false
+    t.datetime "replied_at"
+    t.boolean "accepted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_invites_on_company_id"
+    t.index ["invitation_token"], name: "index_invites_on_invitation_token", unique: true
+    t.index ["inviter_id"], name: "index_invites_on_inviter_id"
+  end
+
   create_table "invoices", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "amount_cents", null: false
@@ -114,5 +128,7 @@ ActiveRecord::Schema.define(version: 2022_04_12_133251) do
   add_foreign_key "company_users", "users", on_delete: :cascade
   add_foreign_key "discount_requests", "companies"
   add_foreign_key "discount_requests", "users"
+  add_foreign_key "invites", "companies"
+  add_foreign_key "invites", "users", column: "inviter_id"
   add_foreign_key "invoices", "users"
 end
